@@ -1,27 +1,16 @@
 set -x
-export HF_ENDPOINT=https://hf-mirror.com
-
-eval "$(conda shell.bash hook)"
-conda activate luffy
 
 # NOTE: change to your root dir
-ROOT=./LUFFY/ 
-
 ray stop 
-
-export no_proxy="127.0.0.1,localhost"
-export NO_PROXY="127.0.0.1,localhost"
 
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export DATA_DIR=$ROOT/data/
-export EXP_NAME=LUFFY_TEST
+export MODEL_PATH=/Qwen2.5-Math-1.5B-16k-think
+export DATA_DIR=./data/
 
-export WANDB_PROJECT="luffy-math-test"
-
-cd $ROOT/luffy/verl/
+export WANDB_PROJECT="rl+sft"
+export EXP_NAME=luffy
 
 # Train over a single node, 8 A100-80GB GPUs.
 python3 -m verl.mix_src.main_mix_ppo \
@@ -71,17 +60,15 @@ python3 -m verl.mix_src.main_mix_ppo \
     actor_rollout_ref.rollout.prefix_share_across_samples=False \
     actor_rollout_ref.rollout.prefix_strategy=random \
     actor_rollout_ref.rollout.n_prefix=1 \
-    actor_rollout_ref.rollout.min_prefix_ratio=1.0 \
-    actor_rollout_ref.rollout.max_prefix_ratio=1.0 \
+    actor_rollout_ref.rollout.min_prefix_ratio=0.0 \
+    actor_rollout_ref.rollout.max_prefix_ratio=0.0 \
     actor_rollout_ref.rollout.prefix_reward_weight_alpha=1.0 \
     actor_rollout_ref.ref.use_ref=False \
     actor_rollout_ref.actor.use_off_policy_loss=True \
     actor_rollout_ref.actor.off_policy_normalize=False \
-    actor_rollout_ref.actor.off_policy_reshape="p_div_p_0.1" \
     actor_rollout_ref.actor.off_policy_loss_impl=token \
     algorithm.grpo_use_std=False \
     actor_rollout_ref.actor.loss_remove_token_mean=True \
-    actor_rollout_ref.actor.loss_remove_clip=True \
     data.reward_impl_version=3 \
     trainer.max_optim_to_keep=2 \
     data.shuffle=True \

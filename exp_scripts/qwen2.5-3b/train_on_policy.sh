@@ -1,28 +1,16 @@
 set -x
-export HF_ENDPOINT=https://hf-mirror.com
-
-eval "$(conda shell.bash hook)"
-conda activate luffy
 
 # NOTE: change to your root dir
-ROOT=../
-export PYTHONPATH=$ROOT:$PYTHONPATH
-
 ray stop 
-
-export no_proxy="127.0.0.1,localhost"
-export NO_PROXY="127.0.0.1,localhost"
 
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export DATA_DIR=$ROOT/data/
-export EXP_NAME=ON_POLICY_TEST
+export MODEL_PATH=/Qwen2.5-Math-1.5B-16k-think
+export DATA_DIR=./data/
 
-export WANDB_PROJECT="luffy-math-test"
-
-cd $ROOT/luffy/verl/
+export WANDB_PROJECT="rl+sft"
+export EXP_NAME=luffy
 
 # Train over a single node, 8 A100-80GB GPUs.
 python3 -m verl.mix_src.main_mix_ppo \

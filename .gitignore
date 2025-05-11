@@ -1,3 +1,4 @@
 /data/openr1.parquet
 **/.ipynb_checkpoints/**
 **/__pycache__/**
+/eval_scripts/results/**

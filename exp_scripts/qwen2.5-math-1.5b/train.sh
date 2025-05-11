@@ -1,7 +1,7 @@
 set -x
 
-ray stop 
-ray start --head --num-cpus=100
+#ray stop 
+#ray start --head --num-cpus=100
 
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
@@ -53,7 +53,7 @@ python -m verl.mix_src.main_mix_ppo \
     trainer.experiment_name="$EXP_NAME" \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
-    trainer.nnodes=1 \
+    trainer.nnodes=4 \
     trainer.save_freq=50 \
     trainer.test_freq=10 \
     actor_rollout_ref.actor.use_kl_loss=False \
@@ -76,6 +76,7 @@ python -m verl.mix_src.main_mix_ppo \
     trainer.max_optim_to_keep=2 \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
-    trainer.total_epochs=30 "${@:1}"
+    trainer.default_local_dir=./train_results/${project_name}/${experiment_name} \
+    trainer.total_epochs=5 "${@:1}"
 
 python /jizhicfs/hymiezhao/ml/busy.py

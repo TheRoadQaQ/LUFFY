@@ -1,8 +1,7 @@
-/data/openr1.parquet
+/dataset/openr1.parquet
 **/.ipynb_checkpoints/**
 **/__pycache__/**
 /eval_scripts/results/**
 /outputs/**
 /wandb/**
-/data/sub_openr1.paruqet
 /train_results/**

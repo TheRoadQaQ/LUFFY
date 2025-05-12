@@ -4,3 +4,5 @@
 /eval_scripts/results/**
 /outputs/**
 /wandb/**
+/data/sub_openr1.paruqet
+/train_results/**

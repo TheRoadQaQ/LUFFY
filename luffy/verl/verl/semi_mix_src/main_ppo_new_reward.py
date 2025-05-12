@@ -14,16 +14,16 @@
 """
 Note that we don't combine the main with ray_trainer as ray_trainer is used by other main.
 """
-
+from typing import List, Union
 from verl import DataProto
 import torch
 from verl.utils.reward_score import gsm8k, math
 from verl.trainer.ppo.ray_trainer import RayPPOTrainer
 
+
 from deepscaler.rewards.math_reward import deepscaler_reward_fn, THOUGHT_DELIMITER_END, THOUGHT_DELIMITER_START
-from typing import List, Union
+
 from verl.mix_src.reward_with_format import deepscaler_reward_fn_impl1
-from verl.mix_src.math_verify_reward import reward_fn_math_verify, reward_fn_math_verify_no_think
 
 def deepscaler_reward_fn_nothink(solution_str: str, ground_truth: Union[str, List[str]], enable_llm = False):
     solution_str = f"{THOUGHT_DELIMITER_START}\n{THOUGHT_DELIMITER_END}\n{solution_str}"
@@ -41,10 +41,6 @@ def _select_rm_score_fn(data_source, reward_impl_version):
             return deepscaler_reward_fn_impl1
         elif reward_impl_version == 2:
             return deepscaler_reward_fn_nothink
-        elif reward_impl_version == 3:
-            return reward_fn_math_verify
-        elif reward_impl_version == 4:
-            return reward_fn_math_verify_no_think
         else:
             raise NotImplementedError
 
@@ -86,17 +82,11 @@ class RewardManager():
             valid_response_ids = response_ids[:valid_response_length]
 
             # decode
-            # sequences = torch.cat((valid_prompt_ids, valid_response_ids))
             sequences = valid_response_ids
             sequences_str = self.tokenizer.decode(sequences)
-            # if not "no_think" in self.reward_impl_version:
             from deepscaler.globals import THOUGHT_DELIMITER_START
             # sequences_str = [THOUGHT_DELIMITER_START + seq.strip() for seq in sequences_str]
-            if self.reward_impl_version != 4:
-                sequences_str = THOUGHT_DELIMITER_START + '\n' + sequences_str
-            # else:
-            #     breakpoint()
-
+            sequences_str = THOUGHT_DELIMITER_START + sequences_str
             ground_truth = data_item.non_tensor_batch['reward_model']['ground_truth']
 
             # select rm_score
@@ -113,14 +103,10 @@ class RewardManager():
             #         print(sequences_str)      
             return i, score, valid_response_length
 
-        if self.reward_impl_version in {3, 4}:
+        # Process items in parallel using ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=96) as executor:
             args = [(i, data[i], already_print_data_sources) for i in range(len(data))]
-            results = list(process_item(args[i]) for i in range(len(args)))
-        else:
-            # Process items in parallel using ThreadPoolExecutor
-            with ThreadPoolExecutor(max_workers=96) as executor:
-                args = [(i, data[i], already_print_data_sources) for i in range(len(data))]
-                results = list(executor.map(process_item, args))
+            results = list(executor.map(process_item, args))
 
         # Fill reward tensor with results
         for i, score, valid_response_length in results:
@@ -128,16 +114,15 @@ class RewardManager():
 
         return reward_tensor
 
-
 import ray
 import hydra
 
 
-@hydra.main(config_path='config', config_name='mix_ppo_trainer', version_base=None)
+@hydra.main(config_path='config', config_name='ppo_trainer', version_base=None)
 def main(config):
     if not ray.is_initialized():
         # this is for local ray cluster
-        ray.init(runtime_env={'env_vars': {"RAY_DEBUG": "1",'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN'}})
+        ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN'}})
 
     ray.get(main_task.remote(config))
 
@@ -168,7 +153,6 @@ def main_task(config):
         ray_worker_group_cls = RayWorkerGroup
 
     elif config.actor_rollout_ref.actor.strategy == 'megatron':
-        raise NotImplementedError('megatron is not supported')
         assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
         from verl.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
         from verl.single_controller.ray.megatron import NVMegatronRayWorkerGroup
@@ -178,33 +162,22 @@ def main_task(config):
         raise NotImplementedError
 
     from verl.trainer.ppo.ray_trainer import ResourcePoolManager, Role
-    from .mix_fsdp_worker import MIXActorRolloutRefWorker
+
+    role_worker_mapping = {
+        Role.ActorRollout: ray.remote(ActorRolloutRefWorker),
+        Role.Critic: ray.remote(CriticWorker),
+        Role.RefPolicy: ray.remote(ActorRolloutRefWorker)
+    }
 
     global_pool_id = 'global_pool'
     resource_pool_spec = {
         global_pool_id: [config.trainer.n_gpus_per_node] * config.trainer.nnodes,
     }
-
-    if config.actor_rollout_ref.ref.use_ref:
-        role_worker_mapping = {
-            Role.ActorRollout: ray.remote(MIXActorRolloutRefWorker),
-            Role.Critic: ray.remote(CriticWorker),
-            Role.RefPolicy: ray.remote(MIXActorRolloutRefWorker)
-        }
-        mapping = {
-            Role.ActorRollout: global_pool_id,
-            Role.Critic: global_pool_id,
-            Role.RefPolicy: global_pool_id,
-        }
-    else:
-        role_worker_mapping = {
-            Role.ActorRollout: ray.remote(MIXActorRolloutRefWorker),
-            Role.Critic: ray.remote(CriticWorker),
-        }
-        mapping = {
-            Role.ActorRollout: global_pool_id,
-            Role.Critic: global_pool_id,
-        }
+    mapping = {
+        Role.ActorRollout: global_pool_id,
+        Role.Critic: global_pool_id,
+        Role.RefPolicy: global_pool_id,
+    }
 
     # we should adopt a multi-source reward function here
     # - for rule-based rm, we directly call a reward score
@@ -225,28 +198,17 @@ def main_task(config):
     reward_fn = RewardManager(tokenizer=tokenizer, num_examine=0, reward_impl_version=config.data.reward_impl_version)
 
     # Note that we always use function-based RM for validation
-    val_reward_fn = RewardManager(tokenizer=tokenizer, num_examine=1, reward_impl_version=config.data.reward_impl_version)
+    val_reward_fn = RewardManager(tokenizer=tokenizer, num_examine=1, reward_impl_version=0)
 
     resource_pool_manager = ResourcePoolManager(resource_pool_spec=resource_pool_spec, mapping=mapping)
 
-    from .mix_trainer import MIXRayPPOTrainer
-    if not config.trainer.acc_rebatch:
-        trainer = MIXRayPPOTrainer(config=config,
-                                tokenizer=tokenizer,
-                                role_worker_mapping=role_worker_mapping,
-                                resource_pool_manager=resource_pool_manager,
-                                ray_worker_group_cls=ray_worker_group_cls,
-                                reward_fn=reward_fn,
-                                val_reward_fn=val_reward_fn)
-    else:
-        from .mix_trainer_acc_rebatch import MIXRayPPOTrainerAccRebatch
-        trainer = MIXRayPPOTrainerAccRebatch(config=config,
-                                tokenizer=tokenizer,
-                                role_worker_mapping=role_worker_mapping,
-                                resource_pool_manager=resource_pool_manager,
-                                ray_worker_group_cls=ray_worker_group_cls,
-                                reward_fn=reward_fn,
-                                val_reward_fn=val_reward_fn)
+    trainer = RayPPOTrainer(config=config,
+                            tokenizer=tokenizer,
+                            role_worker_mapping=role_worker_mapping,
+                            resource_pool_manager=resource_pool_manager,
+                            ray_worker_group_cls=ray_worker_group_cls,
+                            reward_fn=reward_fn,
+                            val_reward_fn=val_reward_fn)
     trainer.init_workers()
     trainer.fit()
 

@@ -35,7 +35,7 @@ from verl.single_controller.ray import RayResourcePool, RayWorkerGroup, RayClass
 from verl.single_controller.ray.base import create_colocated_worker_cls
 from verl.trainer.ppo import core_algos
 from verl.utils.seqlen_balancing import get_seqlen_balanced_partitions, log_seqlen_unbalance
-
+from verl.utils.torch_functional import get_eos_mask, pad_sequence_to_length
 import torch
 
 from verl.trainer.ppo.ray_trainer import (
@@ -254,6 +254,79 @@ class MIXRayPPOTrainer(RayPPOTrainer):
             self.config.actor_rollout_ref.actor.optim.total_training_steps = total_training_steps
             self.config.critic.optim.total_training_steps = total_training_steps
 
+    def replace_response_in_batch(self, batch, solve_none_uids):
+        """Replace generated responses with ground truth tgt_input_ids in batch.
+        
+        Args:
+            batch: TensorDict containing:
+            solve_none_uids: List
+            
+        Returns:
+            Updated TensorDict
+        """
+
+        #breakpoint()
+
+        # obtain replace mask, every all-non prompt replach one response
+        uids = batch.non_tensor_batch['uid']
+        unique_uids = np.unique(uids)
+        n = len(uids) // len(unique_uids)
+        replace_mask = torch.zeros(len(uids), dtype=torch.bool)
+        for i,uid in enumerate(unique_uids):
+            if uid in solve_none_uids:
+                replace_mask[i * n] = True
+
+        eos_token_id = self.tokenizer.eos_token_id
+        pad_token_id = self.tokenizer.pad_token_id
+        
+        batch = batch.batch
+        prompts = batch['prompts'] # b x p_l
+        tgt_input_ids = batch['tgt_input_ids'] # b x r_l
+        
+        # add eos token
+        seq_len = tgt_input_ids.shape[1]
+        tgt_lengths = (tgt_input_ids != pad_token_id).sum(dim=1)
+        replace_positions = torch.where(tgt_lengths < seq_len, tgt_lengths, seq_len - 1)
+        tgt_input_ids[:, replace_positions] = eos_token_id
+
+        original_attention_mask = batch['attention_mask'][:, :prompts.size(1)] # b x p_l
+        original_position_ids = batch['position_ids'][:, :prompts.size(1)] # b x p_l
+        
+        device = prompts.device
+        batch_size = prompts.size(0)
+        response_length = tgt_input_ids.size(1) # r_l
+        
+        # replace responses
+        batch['responses'][replace_mask] = tgt_input_ids[replace_mask]
+        
+        # replace input_ids (prompt + tgt)
+        batch['input_ids'][replace_mask] = torch.cat([prompts[replace_mask], tgt_input_ids[replace_mask]], dim=-1)
+        
+        # find eos_token of tgt_input_ids
+        response_attention_mask = get_eos_mask(tgt_input_ids, eos_token_id, 
+                                                dtype=original_attention_mask.dtype)
+        
+        batch['attention_mask'][replace_mask] = torch.cat(
+            [original_attention_mask[replace_mask], response_attention_mask[replace_mask]], dim=-1)
+        
+        # 计算新的 position_ids (延续prompt的位置)
+        delta_pos = torch.arange(1, response_length+1, device=device)\
+                    .expand(batch_size, response_length)
+        last_prompt_pos = original_position_ids[:, -1].unsqueeze(-1)
+        response_position_ids = last_prompt_pos + delta_pos
+        
+        batch['position_ids'][replace_mask] = torch.cat(
+            [original_position_ids[replace_mask], response_position_ids[replace_mask]], dim=-1)
+        
+        prefix_mask = torch.zeros([batch_size, response_length], dtype=torch.bool).to(device)
+        prefix_mask[replace_mask] = response_attention_mask[replace_mask].to(dtype=torch.bool)
+
+        batch['prefix_mask'] = prefix_mask
+
+        return
+        
+
+
     def fit(self):
         """
         The training loop of PPO.
@@ -281,8 +354,6 @@ class MIXRayPPOTrainer(RayPPOTrainer):
             if self.config.trainer.get('val_only', False):
                 return
 
-        #breakpoint()
-
         # we start from step 1
         self.global_steps += 1
 
@@ -299,7 +370,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                 timing_raw = {}
 
                 # pop those keys for generation
-                gen_batch = batch.pop(batch_keys=['input_ids', 'attention_mask', 'position_ids', 'tgt_input_ids'])
+                gen_batch = batch.pop(batch_keys=['input_ids', 'attention_mask', 'position_ids'])
                 gen_batch.meta_info['global_steps'] = self.global_steps
 
                 with _timer('step', timing_raw):
@@ -312,13 +383,6 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                                                              dtype=object)
                     batch = batch.repeat(repeat_times=self.config.actor_rollout_ref.rollout.n, interleave=True)
                     batch = batch.union(gen_batch_output)
-                    # log avg prefix ratio
-                    if 'prefix_ratios' in gen_batch_output.meta_info.keys():
-                        metrics['batch/avg_prefix_ratio'] = float(np.mean(gen_batch_output.meta_info['prefix_ratios']))
-                    
-                    if self.config.trainer.add_full_target_when_none:
-                        pass
-
                     # compute values
                     if self.use_critic:
                         with _timer('values', timing_raw):
@@ -339,7 +403,6 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         # Group rewards by uid
                         uids = batch.non_tensor_batch['uid']
                         unique_uids = np.unique(uids)
-                        valid_mask = torch.ones(len(uids), dtype=torch.bool)
                         
                         if self.config.data.reward_impl_version == 0:
                             fail_value = 0
@@ -367,23 +430,22 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         solve_none = 0
                         solve_all = 0
                         solve_none_format = 0
+
+                        solve_none_uids = []
+
                         for uid in unique_uids:
                             uid_mask = uids == uid
                             uid_rewards = reward_tensor[uid_mask].sum(-1)  # Sum rewards for each sequence
                             
                             # Check if all rewards are 0 or all are 1 for this uid
                             if (uid_rewards == fail_value).all():
-                                valid_mask[uid_mask] = False
+                                solve_none_uids.append(uid)
                                 solve_none += 1
                             elif (uid_rewards == success_value).all():
-                                valid_mask[uid_mask] = False
                                 solve_all += 1
                             elif (uid_rewards == format_value).all():
-                                valid_mask[uid_mask] = False
                                 solve_none_format += 1
 
-                        if self.config.trainer.skip_valid_mask:
-                            valid_mask[:] = True
                         # Log to metrics
                         metrics['batch/solve_none'] = solve_none
                         metrics['batch/solve_none_format'] = solve_none_format
@@ -392,7 +454,14 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         # add more metrics
                         metrics['batch/solved'] = (reward_tensor.sum(-1) == success_value).sum().item() / len(uids)
                         metrics['batch/failed'] = (reward_tensor.sum(-1) == fail_value).sum().item() / len(uids)
-                        # add on-policy metrics
+                        
+                        # replace on-policy with off-policy experiments within solve_none prompts
+                        self.replace_response_in_batch(batch, solve_none_uids)
+                        
+                        # re-calculate reward
+                        reward_tensor = self.reward_fn(batch) # [bsz, l], only the last valid token has reward
+                        batch.batch['token_level_scores'] = reward_tensor
+                        
                         prefix_mask = batch.batch['prefix_mask']
                         off_policy_mask = prefix_mask.any(-1)
                         on_policy_mask = ~off_policy_mask
@@ -433,8 +502,8 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                                                   grpo_use_std=self.config.algorithm.grpo_use_std)
                             
                         # compute alpha and beta for prefix reward weighting
-                        prefix_mask = batch.batch['prefix_mask']
                         advantages = batch.batch['advantages']
+                        prefix_mask = batch.batch['prefix_mask']
                         assert prefix_mask.shape == advantages.shape
                         
                         alpha_weight = prefix_mask.float() * self.config.actor_rollout_ref.rollout.prefix_reward_weight_alpha

@@ -53,7 +53,7 @@ python -m verl.semi_mix_src.main_mix_ppo \
     trainer.experiment_name="$EXP_NAME" \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
-    trainer.nnodes=2 \
+    trainer.nnodes=1 \
     trainer.save_freq=-1 \
     trainer.test_freq=10 \
     actor_rollout_ref.actor.use_kl_loss=False \

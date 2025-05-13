@@ -8,8 +8,8 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 
 export MODEL_PATH="/data/malu/Qwen2.5-0.5B-Instruct"
 
-math_train=./data/sub_openr1.parquet
-gpqa=./data/valid.gpqa.parquet
+math_train=./dataset/sub_openr1.parquet
+gpqa=./dataset/valid.gpqa.parquet
 
 train_files="['$math_train']"
 test_files="['$gpqa']"
@@ -24,7 +24,8 @@ ray stop
 CUDA_VISIBLE_DEVICES=3 ray start --head --include-dashboard=true --num-cpus=50 --num-gpus=1
 
 # Train over a single node, 8 A100-80GB GPUs.
-CUDA_VISIBLE_DEVICES=3 python3 -m verl.semi_mix_src.main_mix_ppo \
+# semi_mix_src
+CUDA_VISIBLE_DEVICES=3 python3 -m verl.mix_src.main_mix_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$train_files \
     data.val_files=$test_files \
@@ -68,7 +69,11 @@ CUDA_VISIBLE_DEVICES=3 python3 -m verl.semi_mix_src.main_mix_ppo \
     trainer.test_freq=5 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.use_sft_prefix_reward=False \
+    actor_rollout_ref.rollout.prefix_share_across_samples=False \
+    actor_rollout_ref.rollout.prefix_strategy=random \
     actor_rollout_ref.rollout.n_prefix=1 \
+    actor_rollout_ref.rollout.min_prefix_ratio=1.0 \
+    actor_rollout_ref.rollout.max_prefix_ratio=1.0 \
     actor_rollout_ref.rollout.prefix_reward_weight_alpha=1.0 \
     actor_rollout_ref.ref.use_ref=False \
     actor_rollout_ref.actor.use_off_policy_loss=True \

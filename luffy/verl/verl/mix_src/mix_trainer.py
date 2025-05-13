@@ -394,6 +394,9 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         metrics['batch/failed'] = (reward_tensor.sum(-1) == fail_value).sum().item() / len(uids)
                         # add on-policy metrics
                         prefix_mask = batch.batch['prefix_mask']
+
+                        #breakpoint()
+
                         off_policy_mask = prefix_mask.any(-1)
                         on_policy_mask = ~off_policy_mask
                         metrics['batch/on_solved'] = (reward_tensor[on_policy_mask].sum(-1) == success_value).sum().item() / (on_policy_mask.sum().item() + 1e-6)

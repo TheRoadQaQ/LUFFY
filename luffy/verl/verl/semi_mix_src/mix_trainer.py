@@ -269,7 +269,9 @@ class MIXRayPPOTrainer(RayPPOTrainer):
 
         # obtain replace mask, every all-non prompt replach one response
         uids = batch.non_tensor_batch['uid']
-        unique_uids = np.unique(uids)
+        #unique_uids = np.unique(uids)
+        seen = set()
+        unique_uids = [uid for uid in uids if uid not in seen and not seen.add(uid)]
         n = len(uids) // len(unique_uids)
         replace_mask = torch.zeros(len(uids), dtype=torch.bool)
         for i,uid in enumerate(unique_uids):
@@ -281,13 +283,13 @@ class MIXRayPPOTrainer(RayPPOTrainer):
         
         batch = batch.batch
         prompts = batch['prompts'] # b x p_l
-        tgt_input_ids = batch['tgt_input_ids'] # b x r_l
+        tgt_input_ids = batch['tgt_input_ids'].clone() # b x r_l
         
         # add eos token
         seq_len = tgt_input_ids.shape[1]
         tgt_lengths = (tgt_input_ids != pad_token_id).sum(dim=1)
         replace_positions = torch.where(tgt_lengths < seq_len, tgt_lengths, seq_len - 1)
-        tgt_input_ids[:, replace_positions] = eos_token_id
+        tgt_input_ids[torch.arange(len(tgt_input_ids)), replace_positions] = eos_token_id
 
         original_attention_mask = batch['attention_mask'][:, :prompts.size(1)] # b x p_l
         original_position_ids = batch['position_ids'][:, :prompts.size(1)] # b x p_l
@@ -302,7 +304,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
         # replace input_ids (prompt + tgt)
         batch['input_ids'][replace_mask] = torch.cat([prompts[replace_mask], tgt_input_ids[replace_mask]], dim=-1)
         
-        # find eos_token of tgt_input_ids
+        # find eos_token of tgt_input_ids, and mask the tokens before eos_token and eos_token
         response_attention_mask = get_eos_mask(tgt_input_ids, eos_token_id, 
                                                 dtype=original_attention_mask.dtype)
         
@@ -353,6 +355,8 @@ class MIXRayPPOTrainer(RayPPOTrainer):
             logger.log(data=val_metrics, step=self.global_steps)
             if self.config.trainer.get('val_only', False):
                 return
+            
+        #breakpoint()
 
         # we start from step 1
         self.global_steps += 1
@@ -447,13 +451,13 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                                 solve_none_format += 1
 
                         # Log to metrics
-                        metrics['batch/solve_none'] = solve_none
-                        metrics['batch/solve_none_format'] = solve_none_format
-                        metrics['batch/solve_all'] = solve_all
+                        metrics['batch/bef_solve_none'] = solve_none
+                        metrics['batch/bef_solve_none_format'] = solve_none_format
+                        metrics['batch/bef_solve_all'] = solve_all
 
                         # add more metrics
-                        metrics['batch/solved'] = (reward_tensor.sum(-1) == success_value).sum().item() / len(uids)
-                        metrics['batch/failed'] = (reward_tensor.sum(-1) == fail_value).sum().item() / len(uids)
+                        metrics['batch/bef_solved'] = (reward_tensor.sum(-1) == success_value).sum().item() / len(uids)
+                        metrics['batch/bef_failed'] = (reward_tensor.sum(-1) == fail_value).sum().item() / len(uids)
                         
                         # replace on-policy with off-policy experiments within solve_none prompts
                         self.replace_response_in_batch(batch, solve_none_uids)
@@ -462,6 +466,28 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         reward_tensor = self.reward_fn(batch) # [bsz, l], only the last valid token has reward
                         batch.batch['token_level_scores'] = reward_tensor
                         
+                        # re-calculate metrics
+                        solve_none = 0
+                        solve_all = 0
+                        solve_none_format = 0
+
+                        for uid in unique_uids:
+                            uid_mask = uids == uid
+                            uid_rewards = reward_tensor[uid_mask].sum(-1)  # Sum rewards for each sequence
+                            
+                            # Check if all rewards are 0 or all are 1 for this uid
+                            if (uid_rewards == fail_value).all():
+                                solve_none_uids.append(uid)
+                                solve_none += 1
+                            elif (uid_rewards == success_value).all():
+                                solve_all += 1
+                            elif (uid_rewards == format_value).all():
+                                solve_none_format += 1
+
+                        metrics['batch/solve_none'] = solve_none
+                        metrics['batch/solve_none_format'] = solve_none_format
+                        metrics['batch/solve_all'] = solve_all
+
                         prefix_mask = batch.batch['prefix_mask']
                         off_policy_mask = prefix_mask.any(-1)
                         on_policy_mask = ~off_policy_mask

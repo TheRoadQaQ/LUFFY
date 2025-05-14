@@ -119,6 +119,8 @@ def compute_token_on_off_policy_loss(
             off_ratio = off_ratio / (off_ratio + 0.3)
         elif off_policy_reshape == "pow":
             off_ratio = torch.pow(off_ratio, off_policy_reshape_pow_exp)
+        elif off_policy_reshape == "p_div_p_0.01":
+            off_ratio = off_ratio / (off_ratio + 0.01)
         else:
             raise ValueError(f"Invalid off_policy_reshape: {off_policy_reshape}")
     else:

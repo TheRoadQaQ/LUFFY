@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=3 ray start --head --include-dashboard=true --num-cpus=50 -
 
 # Train over a single node, 8 A100-80GB GPUs.
 # semi_mix_src
-CUDA_VISIBLE_DEVICES=3 python3 -m verl.mix_src.main_mix_ppo \
+CUDA_VISIBLE_DEVICES=3 python3 -m verl.semi_mix_src.main_mix_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$train_files \
     data.val_files=$test_files \
@@ -77,6 +77,7 @@ CUDA_VISIBLE_DEVICES=3 python3 -m verl.mix_src.main_mix_ppo \
     actor_rollout_ref.rollout.prefix_reward_weight_alpha=1.0 \
     actor_rollout_ref.ref.use_ref=False \
     actor_rollout_ref.actor.use_off_policy_loss=True \
+    actor_rollout_ref.actor.off_policy_max_clip=0.25 \
     actor_rollout_ref.actor.off_policy_normalize=False \
     actor_rollout_ref.actor.off_policy_reshape="p_div_p_0.1" \
     actor_rollout_ref.actor.off_policy_loss_impl=token \

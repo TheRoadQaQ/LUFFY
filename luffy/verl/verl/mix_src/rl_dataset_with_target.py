@@ -177,10 +177,8 @@ class RLHFDatasetWithTarget(RLHFDataset):
                 # truncation
                 # prompt_len = (input_ids[0] != self.tokenizer.pad_token_id).sum()
                 tgt_len = (tgt_input_ids != self.tokenizer.pad_token_id).sum()
-                try:
-                    assert target_probs_pt.shape[-1] == tgt_len+1
-                except Exception as e:
-                    breakpoint()
+                
+                assert target_probs_pt.shape[-1] == tgt_len+1
                 
                 # same padding as tgt_input_ids
                 if target_probs_pt.shape[-1] < self.max_target_length:

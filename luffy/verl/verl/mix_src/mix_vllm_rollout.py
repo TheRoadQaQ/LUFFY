@@ -263,13 +263,10 @@ class MIXvLLMRollout(vLLMRollout):
                 
                 if 'tgt_input_ids' in prompts.batch:
                     # put the prefix back to the response
-                    try:
-                        resp_list = [
-                            _pre_process_inputs_right_pad(self.pad_token_id, resp)
-                            for resp in response
-                        ]
-                    except:
-                        breakpoint()
+                    resp_list = [
+                        _pre_process_inputs_right_pad(self.pad_token_id, resp)
+                        for resp in response
+                    ]
                     
                     # get prefix_mask and concat_resp_list
                     concat_resp_list = []

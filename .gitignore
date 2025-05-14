@@ -5,3 +5,4 @@
 /outputs/**
 /wandb/**
 /train_results/**
+/data/**

@@ -1,25 +1,18 @@
 set -x
-export HF_ENDPOINT=https://hf-mirror.com
-
-eval "$(conda shell.bash hook)"
-conda activate luffy
 
 # NOTE: change to your root dir
-ROOT=../
-export PYTHONPATH=$ROOT:$PYTHONPATH
-
-ray stop 
 
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export DATA_DIR=$ROOT/data/
-export EXP_NAME=ON_POLICY_TEST
+ray stop 
+ray start --head --num-cpus=100
 
-export WANDB_PROJECT="luffy-math-test"
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export DATA_DIR=./dataset/
 
-cd $ROOT/luffy/verl/
+export WANDB_PROJECT="rl-sft"
+export EXP_NAME="7b_on_policy"
 
 # Train over a single node, 8 A100-80GB GPUs.
 python3 -m verl.mix_src.main_mix_ppo \
@@ -50,7 +43,7 @@ python3 -m verl.mix_src.main_mix_ppo \
     actor_rollout_ref.rollout.val_temperature=0.6 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.80 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.rollout.n_val=1 \
+    actor_rollout_ref.rollout.n_val=4 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     actor_rollout_ref.rollout.max_prefix_len=8192 \
     algorithm.kl_ctrl.kl_coef=0.000 \
@@ -62,7 +55,7 @@ python3 -m verl.mix_src.main_mix_ppo \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=1 \
-    trainer.save_freq=50 \
+    trainer.save_freq=100 \
     trainer.test_freq=10 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.use_sft_prefix_reward=False \
@@ -82,4 +75,5 @@ python3 -m verl.mix_src.main_mix_ppo \
     trainer.max_optim_to_keep=2 \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
-    trainer.total_epochs=30 "${@:1}"
+    trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
+    trainer.total_epochs=5 &> ./logs/${WANDB_PROJECT}_${EXP_NAME}.log

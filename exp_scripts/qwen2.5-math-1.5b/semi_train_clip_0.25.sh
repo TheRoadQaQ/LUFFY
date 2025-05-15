@@ -3,18 +3,18 @@ set -x
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-#ray stop 
-#ray start --head --num-cpus=100
+ray stop 
+ray start --head --num-cpus=100
 
 #export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-1.5B-16k-think
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_LUFFY_TEST
+export EXP_NAME=SEMI_LUFFY_CLIP_0.25
 export WANDB_PROJECT="rl-sft"
 
 # Train over a single node, 8 A100-80GB GPUs.
-python -m verl.mix_src.main_mix_ppo \
+python -m verl.semi_mix_src.main_mix_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/openr1.parquet \
     data.val_files=$DATA_DIR/valid.parquet \
@@ -54,20 +54,17 @@ python -m verl.mix_src.main_mix_ppo \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=1 \
-    trainer.save_freq=100 \
+    trainer.save_freq=-1 \
     trainer.test_freq=10 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.use_sft_prefix_reward=False \
-    actor_rollout_ref.rollout.prefix_share_across_samples=False \
-    actor_rollout_ref.rollout.prefix_strategy=random \
     actor_rollout_ref.rollout.n_prefix=1 \
-    actor_rollout_ref.rollout.min_prefix_ratio=1.0 \
-    actor_rollout_ref.rollout.max_prefix_ratio=1.0 \
     actor_rollout_ref.rollout.prefix_reward_weight_alpha=1.0 \
     actor_rollout_ref.ref.use_ref=False \
     actor_rollout_ref.actor.use_off_policy_loss=True \
+    actor_rollout_ref.actor.off_policy_max_clip=0.25 \
     actor_rollout_ref.actor.off_policy_normalize=False \
-    actor_rollout_ref.actor.off_policy_reshape="p_div_p_0.1" \
+    actor_rollout_ref.actor.off_policy_reshape="no_reshape" \
     actor_rollout_ref.actor.off_policy_loss_impl=token \
     algorithm.grpo_use_std=False \
     actor_rollout_ref.actor.loss_remove_token_mean=True \
@@ -77,6 +74,6 @@ python -m verl.mix_src.main_mix_ppo \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
-    trainer.total_epochs=5 "${@:1}"
+    trainer.total_epochs=5 &> ./logs/${WANDB_PROJECT}_${EXP_NAME}.log
 
 python /jizhicfs/hymiezhao/ml/busy.py

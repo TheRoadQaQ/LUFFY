@@ -31,9 +31,15 @@ def apply_qwen_math_template(question: str):
         + "<|im_end|>\n<|im_start|>assistant\n"
     )
 
-def main(input_file, output_file, model_path, debug=False, remove_system=True, template='own', temperature=0.6, top_p=1.0, max_tokens=8192):
+def main(input_file, output_file, model_path, debug=False, remove_system=True, template='own', temperature=0.6, top_p=1.0, max_tokens=8192, n=8):
     # 数据处理
     df = pd.read_parquet(input_file)
+
+    #df = df[:10]
+
+    num_questions = len(df)
+    print(f"there are {num_questions} samples")
+    
     messages = df['prompt'].tolist()
     # if debug:
         # messages = messages[:10]
@@ -50,63 +56,59 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
     assert len(messages) == len(answers)
     data_sources = df['data_source'].tolist()
             
-    print(messages[0])
-    outputs = generate_vllm(messages, model_path, template=template, temperature=temperature, top_p=top_p, max_tokens=max_tokens)
-    # rets = {}
-    from collections import defaultdict
-    rets = defaultdict(list)
-    save_data = []
-    avg = 0
-    for i, output in enumerate(outputs):
-        prompt = output.prompt
-        generated_text = output.outputs[0].text
-        answer = answers[i]
-        if prompt.endswith(THOUGHT_DELIMITER_START+'\n'):
-            generated_text = THOUGHT_DELIMITER_START + '\n' + generated_text
-            
-        if THOUGHT_DELIMITER_START in generated_text and THOUGHT_DELIMITER_END in generated_text:
-            generated_text = generated_text.split(THOUGHT_DELIMITER_END)[1]
-        
-        # try:
-        labels = labeling_responses([generated_text,], answer)
-        # except Exception as e:
-        #     print(f'Error: {e}')
-        #     # continue
-        #     # rets[data_sources[i]].append(False)
-        #     labels = [False,]
-        
-        rets[data_sources[i]].append(labels[0])
-        
-        save_data.append({
-            'prompt': prompt,
-            'generated_text': generated_text,
-            'answer': answer,
-            'correctness': labels[0]
-        })
-        if labels[0]:
-            avg += 1
-            
-    print('accuracy: ', avg / len(outputs))
-    
-    for data_source, labels in rets.items():
-        # print(data_source, len(labels))
-        acc = np.array(labels).mean()
-        print(f'{data_source}: {acc}')
-    
-    try:
-        with open(output_file, 'w') as f:
-            for item in save_data:
-                f.write(json.dumps(item) + '\n')
-    except Exception as e:
-        print(f'Error: {e}')
-        print(f'Output file: {output_file}')
-        # print(f'Save data: {save_data}')
+    outputs = generate_vllm(messages, model_path, template=template, temperature=temperature, top_p=top_p, max_tokens=max_tokens, n=n)
 
-def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=0.95, max_tokens=8192):
+    print(len(outputs),num_questions)
+
+    accs = []
+    generated_texts_list = []
+
+    print(outputs[0])
+
+    for i in range(num_questions):
+        correct_count = 0
+        
+        output = outputs[i]
+        answer = answers[i]
+        
+        generated_texts = []
+        prompt = output.prompt
+            
+        for j in range(n):  # 遍历这个问题的n个回答
+            generated_text = output.outputs[j].text
+            
+            if prompt.endswith(THOUGHT_DELIMITER_START+'\n'):
+                generated_text = THOUGHT_DELIMITER_START + '\n' + generated_text
+                
+            if THOUGHT_DELIMITER_START in generated_text and THOUGHT_DELIMITER_END in generated_text:
+                generated_text = generated_text.split(THOUGHT_DELIMITER_END)[1]
+            
+            labels = labeling_responses([generated_text,], answer)
+            
+            generated_texts.append({
+                'generated_text': generated_text,
+                'correctness': labels[0]
+            })
+            
+            if labels[0]:
+                correct_count += 1
+    
+        # 计算当前组的准确率并添加到acc_list
+        group_acc = correct_count / n
+        accs.append(group_acc)
+        generated_texts_list.append(generated_texts)
+
+    df["accs"] = accs
+    df["answers"] = generated_texts_list
+
+    df.to_parquet(output_file)
+            
+
+def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=0.95, max_tokens=8192, n=8):
     #vllm模型加载
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     # max_tokens is for the maximum length for generation.
-    sampling_params = SamplingParams(temperature=temperature, top_p=top_p, max_tokens=8192)
+    sampling_params = SamplingParams(n=n ,temperature=temperature, top_p=top_p, max_tokens=8192)
     llm = LLM(model=model_path, tensor_parallel_size=torch.cuda.device_count()
              )  # 替换成本地路径
 
@@ -125,9 +127,7 @@ def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=0
             gen_prompt = make_conv_zero(cur_message[0]['content'])
         elif template == 'no':
             gen_prompt = cur_message[0]['content']
-        else:
-            raise ValueError(f'Invalid template: {template}')
-        
+        else: raise ValueError(f'Invalid template: {template}')
         gen_prompts.append(gen_prompt)
         if i == 0:
             print('Example input: ', gen_prompt)

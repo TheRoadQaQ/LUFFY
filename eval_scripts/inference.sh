@@ -1,4 +1,4 @@
-DATA=../data/valid.all.parquet
+DATA=../dataset/valid.all.parquet
 
 OUTPUT_DIR=./results/
 mkdir -p $OUTPUT_DIR
@@ -11,6 +11,7 @@ TEMPLATE=own
 MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-1.5B-16k-think
 MODEL_NAME=Qwen-Math-1.5B
 TEMPLATE=qwen
+TEMPLATE=own
 
 CUDA_VISIBLE_DEVICES=4,5,6,7 python generate_vllm.py \
   --model_path $MODEL_PATH \

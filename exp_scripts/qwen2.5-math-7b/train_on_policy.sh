@@ -43,7 +43,7 @@ python3 -m verl.mix_src.main_mix_ppo \
     actor_rollout_ref.rollout.val_temperature=0.6 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.80 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.rollout.n_val=4 \
+    actor_rollout_ref.rollout.n_val=1 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     actor_rollout_ref.rollout.max_prefix_len=8192 \
     algorithm.kl_ctrl.kl_coef=0.000 \
@@ -76,4 +76,4 @@ python3 -m verl.mix_src.main_mix_ppo \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
-    trainer.total_epochs=5 &> ./logs/${WANDB_PROJECT}_${EXP_NAME}.log
+    trainer.total_epochs=5 #&> ./logs/${WANDB_PROJECT}_${EXP_NAME}.log

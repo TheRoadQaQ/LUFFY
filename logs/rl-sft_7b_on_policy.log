@@ -1150,3 +1150,1622 @@
 [36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
 [36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
 [36m(main_task pid=69120)[0m AttributeError: 'Equality' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 18:49:44,851:Error comparing 109890 and Sum(k*(k - 1)**4*binomial(T + 1, k), (k, 3, T + 1))
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 582, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_numeric_eq(gold, pred, float_rounding, numeric_precision):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 139, in sympy_numeric_eq
+[36m(main_task pid=69120)[0m     return safe_sympy_doit(a) == safe_sympy_doit(b)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 80, in safe_sympy_doit
+[36m(main_task pid=69120)[0m     return a.doit()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 252, in doit
+[36m(main_task pid=69120)[0m     newf = eval_sum(f, (i, a, b))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1048, in eval_sum
+[36m(main_task pid=69120)[0m     value = eval_sum_symbolic(f.expand(), (i, a, b))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1177, in eval_sum_symbolic
+[36m(main_task pid=69120)[0m     rsum = eval_sum_symbolic(R, (i, a, b))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1176, in eval_sum_symbolic
+[36m(main_task pid=69120)[0m     lsum = eval_sum_symbolic(L, (i, a, b))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1252, in eval_sum_symbolic
+[36m(main_task pid=69120)[0m     h = eval_sum_hyper(f_orig, (i, a, b))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1340, in eval_sum_hyper
+[36m(main_task pid=69120)[0m     res1 = _eval_sum_hyper(f, i, a)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1268, in _eval_sum_hyper
+[36m(main_task pid=69120)[0m     return _eval_sum_hyper(f.subs(i, i + a), i, 0)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/concrete/summations.py", line 1316, in _eval_sum_hyper
+[36m(main_task pid=69120)[0m     return f.subs(i, 0)*hyperexpand(h), h.convergence_statement
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 2494, in hyperexpand
+[36m(main_task pid=69120)[0m     return f.replace(hyper, do_replace).replace(meijerg, do_meijer)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1749, in replace
+[36m(main_task pid=69120)[0m     rv = walk(self, rec_replace)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1734, in walk
+[36m(main_task pid=69120)[0m     rv = F(rv)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1742, in rec_replace
+[36m(main_task pid=69120)[0m     v = _value(expr, result)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1671, in <lambda>
+[36m(main_task pid=69120)[0m     _value = lambda expr, result: value(*expr.args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 2483, in do_replace
+[36m(main_task pid=69120)[0m     r = _hyperexpand(Hyper_Function(ap, bq), z, rewrite=rewrite)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 2056, in _hyperexpand
+[36m(main_task pid=69120)[0m     r = carryout_plan(formula, ops) + p
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 1977, in carryout_plan
+[36m(main_task pid=69120)[0m     C = apply_operators(f.C.subs(f.z, z0), ops,
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 1511, in apply_operators
+[36m(main_task pid=69120)[0m     res = o.apply(res, op)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 995, in apply
+[36m(main_task pid=69120)[0m     diffs.append(op(diffs[-1]))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 1499, in doit
+[36m(main_task pid=69120)[0m     r = r.applyfunc(make_simp(z))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/matrices/matrixbase.py", line 2110, in applyfunc
+[36m(main_task pid=69120)[0m     return self._eval_applyfunc(f)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/matrices/matrixbase.py", line 2042, in _eval_applyfunc
+[36m(main_task pid=69120)[0m     valmap = {v: f(v) for v in dok.values()}
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/matrices/matrixbase.py", line 2042, in <dictcomp>
+[36m(main_task pid=69120)[0m     valmap = {v: f(v) for v in dok.values()}
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/hyperexpand.py", line 461, in simp
+[36m(main_task pid=69120)[0m     numer = numer.expand()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3673, in expand
+[36m(main_task pid=69120)[0m     expr, hit = Expr._expand_hint(expr, hint, deep=deep, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3604, in _expand_hint
+[36m(main_task pid=69120)[0m     arg, arghit = Expr._expand_hint(arg, hint, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3612, in _expand_hint
+[36m(main_task pid=69120)[0m     newexpr = getattr(expr, hint)(**hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 948, in _eval_expand_mul
+[36m(main_task pid=69120)[0m     terms = self.func._expandsums(sums)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 910, in _expandsums
+[36m(main_task pid=69120)[0m     right = Mul._expandsums(sums[L//2:])
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 912, in _expandsums
+[36m(main_task pid=69120)[0m     terms = [Mul(a, b) for a in left for b in right]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 912, in <listcomp>
+[36m(main_task pid=69120)[0m     terms = [Mul(a, b) for a in left for b in right]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 657, in flatten
+[36m(main_task pid=69120)[0m     if coeff in (S.Infinity, S.NegativeInfinity):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 3115, in __eq__
+[36m(main_task pid=69120)[0m     def __eq__(self, other):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(WorkerDict pid=72240)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:689: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=72240)[0m   warnings.warn(
+[36m(WorkerDict pid=72240)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+[36m(WorkerDict pid=72240)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 19:27:18,757:Error comparing (-1 <= x) & (x < -1*sqrt(31)/8 + 1) and sqrt(3 - x) - sqrt(x + 1) > 1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictGreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 19:59:48,021:Error comparing (-x**3 + x**2 + 1)**1000 and (x**3 - x**2 + 1)**1000
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7182, in cancel
+[36m(main_task pid=69120)[0m     R, (F, G) = sring((p, q), *gens, **args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 163, in sring
+[36m(main_task pid=69120)[0m     reps, opt = _parallel_dict_from_expr(exprs, opt)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in _parallel_dict_from_expr
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in <listcomp>
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3673, in expand
+[36m(main_task pid=69120)[0m     expr, hit = Expr._expand_hint(expr, hint, deep=deep, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3604, in _expand_hint
+[36m(main_task pid=69120)[0m     arg, arghit = Expr._expand_hint(arg, hint, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3612, in _expand_hint
+[36m(main_task pid=69120)[0m     newexpr = getattr(expr, hint)(**hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/power.py", line 1104, in _eval_expand_multinomial
+[36m(main_task pid=69120)[0m     return basic_from_dict(expansion_dict, *p)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 403, in expr_from_dict
+[36m(main_task pid=69120)[0m     result.append(Mul(*term))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 480, in flatten
+[36m(main_task pid=69120)[0m     c_powers = _gather(c_powers)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 473, in _gather
+[36m(main_task pid=69120)[0m     d[di] = Add(*li)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 247, in flatten
+[36m(main_task pid=69120)[0m     coeff += o
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 1860, in __add__
+[36m(main_task pid=69120)[0m     return Integer(self.p + other.p)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 1791, in __new__
+[36m(main_task pid=69120)[0m     ival = int(i)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 19:59:51,038:Error comparing (-x**3 + x**2 + 1)**1000 and (x**3 - x**2 + 1)**1000
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7182, in cancel
+[36m(main_task pid=69120)[0m     R, (F, G) = sring((p, q), *gens, **args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 163, in sring
+[36m(main_task pid=69120)[0m     reps, opt = _parallel_dict_from_expr(exprs, opt)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in _parallel_dict_from_expr
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in <listcomp>
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3673, in expand
+[36m(main_task pid=69120)[0m     expr, hit = Expr._expand_hint(expr, hint, deep=deep, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3604, in _expand_hint
+[36m(main_task pid=69120)[0m     arg, arghit = Expr._expand_hint(arg, hint, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3612, in _expand_hint
+[36m(main_task pid=69120)[0m     newexpr = getattr(expr, hint)(**hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/power.py", line 1104, in _eval_expand_multinomial
+[36m(main_task pid=69120)[0m     return basic_from_dict(expansion_dict, *p)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 403, in expr_from_dict
+[36m(main_task pid=69120)[0m     result.append(Mul(*term))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 511, in flatten
+[36m(main_task pid=69120)[0m     if e.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 502, in getit
+[36m(main_task pid=69120)[0m     self._assumptions = self.default_assumptions.copy()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 482, in copy
+[36m(main_task pid=69120)[0m     return self.__class__(self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 479, in __init__
+[36m(main_task pid=69120)[0m     self.deduce_all_facts(facts)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/facts.py", line 633, in deduce_all_facts
+[36m(main_task pid=69120)[0m     if all(self.get(k) is v for k, v in bcond):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 19:59:54,127:Error comparing (-x**3 + x**2 + 1)**1000 and x**20
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7182, in cancel
+[36m(main_task pid=69120)[0m     R, (F, G) = sring((p, q), *gens, **args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 163, in sring
+[36m(main_task pid=69120)[0m     reps, opt = _parallel_dict_from_expr(exprs, opt)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in _parallel_dict_from_expr
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in <listcomp>
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3673, in expand
+[36m(main_task pid=69120)[0m     expr, hit = Expr._expand_hint(expr, hint, deep=deep, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3604, in _expand_hint
+[36m(main_task pid=69120)[0m     arg, arghit = Expr._expand_hint(arg, hint, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3612, in _expand_hint
+[36m(main_task pid=69120)[0m     newexpr = getattr(expr, hint)(**hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/power.py", line 1104, in _eval_expand_multinomial
+[36m(main_task pid=69120)[0m     return basic_from_dict(expansion_dict, *p)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 403, in expr_from_dict
+[36m(main_task pid=69120)[0m     result.append(Mul(*term))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 657, in flatten
+[36m(main_task pid=69120)[0m     if coeff in (S.Infinity, S.NegativeInfinity):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 3281, in __eq__
+[36m(main_task pid=69120)[0m     def __eq__(self, other):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,854:Error comparing zoo and 5/18
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,857:Error comparing zoo and 2/5
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,862:Error comparing zoo and 5/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,865:Error comparing zoo and 3/4
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,868:Error comparing zoo and 5/22
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,871:Error comparing zoo and 9/20
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,874:Error comparing zoo and 10
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 20:18:10,878:Error comparing zoo and 5/28
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(WorkerDict pid=72240)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:689: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=72240)[0m   warnings.warn(
+[36m(WorkerDict pid=72240)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+[36m(WorkerDict pid=72240)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:53,274:Error comparing 2**2013 and 2**(-1993*1005)
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 582, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_numeric_eq(gold, pred, float_rounding, numeric_precision):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 143, in sympy_numeric_eq
+[36m(main_task pid=69120)[0m     return (a - b).evalf(chop=True, n=numeric_precision) == 0  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1648, in evalf
+[36m(main_task pid=69120)[0m     result = evalf(self, prec + 4, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in evalf_add
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in <listcomp>
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 487, in evalf_rational
+[36m(main_task pid=69120)[0m     return from_rational(expr.p, expr.q, prec), None, prec, None
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/libmp/libmpf.py", line 494, in from_rational
+[36m(main_task pid=69120)[0m     return mpf_div(from_int(p), from_int(q), prec, rnd)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/libmp/libmpf.py", line 336, in from_int
+[36m(main_task pid=69120)[0m     return from_man_exp(n, 0, prec, rnd)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/libmp/libmpf.py", line 311, in from_man_exp
+[36m(main_task pid=69120)[0m     while not man & 255:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:55,153:Error comparing (x < (sqrt(2) + 10)/2) & (-1*1/4*(sqrt(2) + 2) < x) and Abs(x + 7) - Abs(3*x - 4) + sqrt(-1*2*sqrt(2) + 3) > 0
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictGreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,602:Error comparing (0 <= x) & (x < 64) and \text{Re}(x) < 36
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,605:Error comparing (0 <= x) & (x < 64) and x + y < 72
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,608:Error comparing (0 <= x) & (x < 64) and x < 36
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,609:Error comparing (0 <= x) & (x < 64) and x < 36
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,611:Error comparing (0 <= x) & (x < 64) and x < 36
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,614:Error comparing (0 <= x) & (x < 64) and x < 72 - bar{x}
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:23:56,620:Error comparing (0 <= x) & (x < 64) and x < 36
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictLessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 21:54:39,111:Error comparing 55/96 and Integral(1/(sin(x*(1 - cos(x)))**2), (x, pi/2, 2*atan(2)))
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 603, in simplify
+[36m(main_task pid=69120)[0m     original_expr = expr = collect_abs(signsimp(expr))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 406, in signsimp
+[36m(main_task pid=69120)[0m     e = sub_post(sub_pre(e))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/cse_opts.py", line 14, in sub_pre
+[36m(main_task pid=69120)[0m     adds = [a for a in e.atoms(Add) if a.could_extract_minus_sign()]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/cse_opts.py", line 14, in <listcomp>
+[36m(main_task pid=69120)[0m     adds = [a for a in e.atoms(Add) if a.could_extract_minus_sign()]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 412, in could_extract_minus_sign
+[36m(main_task pid=69120)[0m     return _could_extract_minus_sign(self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 30, in _could_extract_minus_sign
+[36m(main_task pid=69120)[0m     return bool(expr.sort_key() < (-expr).sort_key())
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 136, in sort_key
+[36m(main_task pid=69120)[0m     args = expr.as_ordered_terms(order=order)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 1135, in as_ordered_terms
+[36m(main_task pid=69120)[0m     terms, gens = self.as_terms()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 1172, in as_terms
+[36m(main_task pid=69120)[0m     coeff *= complex(factor)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 343, in __complex__
+[36m(main_task pid=69120)[0m     result = self.evalf()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1648, in evalf
+[36m(main_task pid=69120)[0m     result = evalf(self, prec + 4, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1175, in evalf_integral
+[36m(main_task pid=69120)[0m     result = do_integral(expr, workprec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1136, in do_integral
+[36m(main_task pid=69120)[0m     result, quadrature_err = quadts(f, [xlow, xhigh], error=1)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 789, in quadts
+[36m(main_task pid=69120)[0m     return ctx.quad(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 746, in quad
+[36m(main_task pid=69120)[0m     v, err = rule.summation(f, points[0], prec, epsilon, m, verbose)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 233, in summation
+[36m(main_task pid=69120)[0m     result = self.sum_next(f, nodes, degree, prec, results, verbose)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 308, in sum_next
+[36m(main_task pid=69120)[0m     S += self.ctx.fdot((w,f(x)) for (x,w) in nodes)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/ctx_mp_python.py", line 938, in fdot
+[36m(main_task pid=69120)[0m     for a, b in A:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 308, in <genexpr>
+[36m(main_task pid=69120)[0m     S += self.ctx.fdot((w,f(x)) for (x,w) in nodes)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1109, in f
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(func, mp.prec, {'subs': {x: t}})
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 777, in evalf_pow
+[36m(main_task pid=69120)[0m     result = evalf(base, prec + 5, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 777, in evalf_pow
+[36m(main_task pid=69120)[0m     result = evalf(base, prec + 5, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 913, in evalf_trig
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(arg, xprec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 657, in evalf_mul
+[36m(main_task pid=69120)[0m     num = Float._new(result[0], 1)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 925, in _new
+[36m(main_task pid=69120)[0m     obj = Expr.__new__(cls)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 229, in __new__
+[36m(main_task pid=69120)[0m     def __new__(cls, *args):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 22:03:36,243:Error comparing (0 <= b) & (b <= 2) and b >= 0
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'GreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 22:12:49,797:Error comparing -1*3*pi/8 + 5/4 and Integral(x**4/sqrt((1 - x**2)**3), (x, 0, sqrt(2)/2))
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 582, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_numeric_eq(gold, pred, float_rounding, numeric_precision):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 143, in sympy_numeric_eq
+[36m(main_task pid=69120)[0m     return (a - b).evalf(chop=True, n=numeric_precision) == 0  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1648, in evalf
+[36m(main_task pid=69120)[0m     result = evalf(self, prec + 4, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in evalf_add
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in <listcomp>
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 697, in evalf_mul
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(arg, working_prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1175, in evalf_integral
+[36m(main_task pid=69120)[0m     result = do_integral(expr, workprec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1136, in do_integral
+[36m(main_task pid=69120)[0m     result, quadrature_err = quadts(f, [xlow, xhigh], error=1)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 789, in quadts
+[36m(main_task pid=69120)[0m     return ctx.quad(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 746, in quad
+[36m(main_task pid=69120)[0m     v, err = rule.summation(f, points[0], prec, epsilon, m, verbose)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 233, in summation
+[36m(main_task pid=69120)[0m     result = self.sum_next(f, nodes, degree, prec, results, verbose)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 308, in sum_next
+[36m(main_task pid=69120)[0m     S += self.ctx.fdot((w,f(x)) for (x,w) in nodes)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/ctx_mp_python.py", line 938, in fdot
+[36m(main_task pid=69120)[0m     for a, b in A:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 308, in <genexpr>
+[36m(main_task pid=69120)[0m     S += self.ctx.fdot((w,f(x)) for (x,w) in nodes)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1109, in f
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(func, mp.prec, {'subs': {x: t}})
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 697, in evalf_mul
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(arg, working_prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 856, in evalf_pow
+[36m(main_task pid=69120)[0m     xre, xim, _, _ = evalf(base, prec + 5, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 777, in evalf_pow
+[36m(main_task pid=69120)[0m     result = evalf(base, prec + 5, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in evalf_add
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in <listcomp>
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1482, in evalf
+[36m(main_task pid=69120)[0m     rf = evalf_table[type(x)]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(WorkerDict pid=72240)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:689: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=72240)[0m   warnings.warn(
+[36m(WorkerDict pid=72240)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+[36m(WorkerDict pid=72240)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,273:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,275:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,276:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,278:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,279:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,283:Error comparing zoo and 261
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,284:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:08:52,286:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:27:05,025:Error comparing 3**6567340 and 2**19702019*3**19702018
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'even'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 596, in simplify
+[36m(main_task pid=69120)[0m     if isinstance(expr, Expr) and expr.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 559, in _ask
+[36m(main_task pid=69120)[0m     fact_i_value = handler_i(obj)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 735, in _eval_is_odd
+[36m(main_task pid=69120)[0m     l = [f for f in self.args if not (f.is_even is True)]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 735, in <listcomp>
+[36m(main_task pid=69120)[0m     l = [f for f in self.args if not (f.is_even is True)]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 559, in _ask
+[36m(main_task pid=69120)[0m     fact_i_value = handler_i(obj)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 1653, in _eval_is_even
+[36m(main_task pid=69120)[0m     n, d = fraction(self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/radsimp.py", line 1131, in fraction
+[36m(main_task pid=69120)[0m     return Mul(*numer, evaluate=not exact), Mul(*denom, evaluate=not exact)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 399, in flatten
+[36m(main_task pid=69120)[0m     coeff *= Pow(b, e)  # it is an unevaluated power
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/power.py", line 207, in __new__
+[36m(main_task pid=69120)[0m     obj = b._eval_power(e)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 2045, in _eval_power
+[36m(main_task pid=69120)[0m     result = Integer(x**abs(expt.p))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:27:08,038:Error comparing 3**6567340 and 2**19702019*3**19702019
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 596, in simplify
+[36m(main_task pid=69120)[0m     if isinstance(expr, Expr) and expr.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 559, in _ask
+[36m(main_task pid=69120)[0m     fact_i_value = handler_i(obj)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 772, in _eval_is_extended_positive
+[36m(main_task pid=69120)[0m     return super()._eval_is_extended_positive()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 880, in _eval_is_extended_positive
+[36m(main_task pid=69120)[0m     return self._eval_is_extended_positive_negative(positive=True)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 846, in _eval_is_extended_positive_negative
+[36m(main_task pid=69120)[0m     n2 = self._eval_evalf(2)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 422, in _eval_evalf
+[36m(main_task pid=69120)[0m     newa = a._eval_evalf(prec)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 755, in _eval_evalf
+[36m(main_task pid=69120)[0m     rv = -AssocOp._eval_evalf(m, prec)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 394, in _eval_evalf
+[36m(main_task pid=69120)[0m     x, tail = self.as_independent(Symbol, AppliedUndef)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 1892, in as_independent
+[36m(main_task pid=69120)[0m     return Mul(*indep), (
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 399, in flatten
+[36m(main_task pid=69120)[0m     coeff *= Pow(b, e)  # it is an unevaluated power
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/power.py", line 207, in __new__
+[36m(main_task pid=69120)[0m     obj = b._eval_power(e)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 2045, in _eval_power
+[36m(main_task pid=69120)[0m     result = Integer(x**abs(expt.p))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:27:11,064:Error comparing 3**6567340 and 2**19702018*3**19702019
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'even'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 596, in simplify
+[36m(main_task pid=69120)[0m     if isinstance(expr, Expr) and expr.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 559, in _ask
+[36m(main_task pid=69120)[0m     fact_i_value = handler_i(obj)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 735, in _eval_is_odd
+[36m(main_task pid=69120)[0m     l = [f for f in self.args if not (f.is_even is True)]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 735, in <listcomp>
+[36m(main_task pid=69120)[0m     l = [f for f in self.args if not (f.is_even is True)]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 559, in _ask
+[36m(main_task pid=69120)[0m     fact_i_value = handler_i(obj)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 1653, in _eval_is_even
+[36m(main_task pid=69120)[0m     n, d = fraction(self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/radsimp.py", line 1131, in fraction
+[36m(main_task pid=69120)[0m     return Mul(*numer, evaluate=not exact), Mul(*denom, evaluate=not exact)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 399, in flatten
+[36m(main_task pid=69120)[0m     coeff *= Pow(b, e)  # it is an unevaluated power
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/power.py", line 207, in __new__
+[36m(main_task pid=69120)[0m     obj = b._eval_power(e)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 2045, in _eval_power
+[36m(main_task pid=69120)[0m     result = Integer(x**abs(expt.p))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-15 23:54:45,135:Error comparing Eq((a, b), Interval.open(-20, 19)) and Integral((-x**2 - x + 380)*exp(cos(x)), (x, -20, 19))
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 573, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_sets(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 351, in sympy_compare_sets
+[36m(main_task pid=69120)[0m     if isinstance(a_set, Set) and isinstance(b_set, Set) and a_set.symmetric_difference(b_set).is_empty:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 259, in symmetric_difference
+[36m(main_task pid=69120)[0m     return SymmetricDifference(self, other)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2183, in __new__
+[36m(main_task pid=69120)[0m     return SymmetricDifference.reduce(a, b)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2189, in reduce
+[36m(main_task pid=69120)[0m     result = B._symmetric_difference(A)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 262, in _symmetric_difference
+[36m(main_task pid=69120)[0m     return Union(Complement(self, other), Complement(other, self))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=69120)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1731, in reduce
+[36m(main_task pid=69120)[0m     if B == S.UniversalSet or A.is_subset(B):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 413, in is_subset
+[36m(main_task pid=69120)[0m     ret = self._eval_is_subset(other)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2056, in _eval_is_subset
+[36m(main_task pid=69120)[0m     return fuzzy_and(other._contains(e) for e in self.args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/logic.py", line 142, in fuzzy_and
+[36m(main_task pid=69120)[0m     for ai in args:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2056, in <genexpr>
+[36m(main_task pid=69120)[0m     return fuzzy_and(other._contains(e) for e in self.args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1227, in _contains
+[36m(main_task pid=69120)[0m     return self.as_relational(d).subs(d, other)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1123, in subs
+[36m(main_task pid=69120)[0m     rv = rv._subs(old, new, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1235, in _subs
+[36m(main_task pid=69120)[0m     rv = self._eval_subs(old, new)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/logic/boolalg.py", line 599, in _eval_subs
+[36m(main_task pid=69120)[0m     i = i.subs(old, new)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1123, in subs
+[36m(main_task pid=69120)[0m     rv = rv._subs(old, new, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1237, in _subs
+[36m(main_task pid=69120)[0m     rv = fallback(self, old, new)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/basic.py", line 1214, in fallback
+[36m(main_task pid=69120)[0m     rv = self.func(*args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 852, in __new__
+[36m(main_task pid=69120)[0m     return cls._eval_relation(lhs, rhs, **options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 859, in _eval_relation
+[36m(main_task pid=69120)[0m     val = cls._eval_fuzzy_relation(lhs, rhs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 1186, in _eval_fuzzy_relation
+[36m(main_task pid=69120)[0m     return is_lt(lhs, rhs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 1265, in is_lt
+[36m(main_task pid=69120)[0m     return fuzzy_not(is_ge(lhs, rhs, assumptions))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 1387, in is_ge
+[36m(main_task pid=69120)[0m     n2 = _n2(lhs, rhs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 1222, in _n2
+[36m(main_task pid=69120)[0m     dif = (a - b).evalf(2)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1648, in evalf
+[36m(main_task pid=69120)[0m     result = evalf(self, prec + 4, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in evalf_add
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in <listcomp>
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1175, in evalf_integral
+[36m(main_task pid=69120)[0m     result = do_integral(expr, workprec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1136, in do_integral
+[36m(main_task pid=69120)[0m     result, quadrature_err = quadts(f, [xlow, xhigh], error=1)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 789, in quadts
+[36m(main_task pid=69120)[0m     return ctx.quad(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 746, in quad
+[36m(main_task pid=69120)[0m     v, err = rule.summation(f, points[0], prec, epsilon, m, verbose)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 233, in summation
+[36m(main_task pid=69120)[0m     result = self.sum_next(f, nodes, degree, prec, results, verbose)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 308, in sum_next
+[36m(main_task pid=69120)[0m     S += self.ctx.fdot((w,f(x)) for (x,w) in nodes)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/ctx_mp_python.py", line 938, in fdot
+[36m(main_task pid=69120)[0m     for a, b in A:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/mpmath/calculus/quadrature.py", line 308, in <genexpr>
+[36m(main_task pid=69120)[0m     S += self.ctx.fdot((w,f(x)) for (x,w) in nodes)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1109, in f
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(func, mp.prec, {'subs': {x: t}})
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 697, in evalf_mul
+[36m(main_task pid=69120)[0m     re, im, re_acc, im_acc = evalf(arg, working_prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in evalf_add
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 601, in <listcomp>
+[36m(main_task pid=69120)[0m     terms = [evalf(arg, prec + 10, options) for arg in v.args]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 1483, in evalf
+[36m(main_task pid=69120)[0m     r = rf(x, prec, options)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/evalf.py", line 712, in evalf_mul
+[36m(main_task pid=69120)[0m     while bc > 3*working_prec:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(WorkerDict pid=72450)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+[36m(WorkerDict pid=72450)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:03:52,640:Error comparing (-1/2 < k) & (k < 4) and k >= 1
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'GreaterThan' object has no attribute '_unsorted_args'
+[36m(WorkerDict pid=72448)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.[32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=72448)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined][32m [repeated 7x across cluster][0m
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:03:52,652:Error comparing (-1/2 < k) & (k < 4) and k > -1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictGreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:03:52,657:Error comparing (-1/2 < k) & (k < 4) and k > -1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictGreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:25,711:Error comparing (x <= sqrt(13)) & (-sqrt(13) <= x) and x**2 - 1*3*sqrt(x**2 + 3) <= 1
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'LessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:25,819:Error comparing (x <= sqrt(13)) & (-sqrt(13) <= x) and x**2 - 1*3*sqrt(x**2 + 3) <= 1
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'LessThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:32,427:Error comparing Eq(P(x), (x - 1/2)**2001 + 1/2) and Eq(P(x), Sum(a_{2000-2k}*x*(1 - x)*(2*x - 1)**(-1*2*k + 2000), (k, 0, 1000)) + 1/2)
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 274, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     if type(gold) == type(pred) and sympy_expr_eq(gold.lhs - gold.rhs, pred.lhs - pred.rhs, float_rounding, numeric_precision):  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7182, in cancel
+[36m(main_task pid=69120)[0m     R, (F, G) = sring((p, q), *gens, **args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 163, in sring
+[36m(main_task pid=69120)[0m     reps, opt = _parallel_dict_from_expr(exprs, opt)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in _parallel_dict_from_expr
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in <listcomp>
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3681, in expand
+[36m(main_task pid=69120)[0m     expr, _ = Expr._expand_hint(
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3604, in _expand_hint
+[36m(main_task pid=69120)[0m     arg, arghit = Expr._expand_hint(arg, hint, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3612, in _expand_hint
+[36m(main_task pid=69120)[0m     newexpr = getattr(expr, hint)(**hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 923, in _eval_expand_mul
+[36m(main_task pid=69120)[0m     n, d = fraction(expr, hints.get('exact', False))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/radsimp.py", line 1131, in fraction
+[36m(main_task pid=69120)[0m     return Mul(*numer, evaluate=not exact), Mul(*denom, evaluate=not exact)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 685, in flatten
+[36m(main_task pid=69120)[0m     elif coeff.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 509, in _ask
+[36m(main_task pid=69120)[0m     def _ask(fact, obj):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:35,458:Error comparing Eq(P(x), (x - 1/2)**2001 + 1/2) and -x**2002 + x**2001 + 1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7218, in cancel
+[36m(main_task pid=69120)[0m     return c*(P.as_expr()/Q.as_expr())
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 643, in as_expr
+[36m(main_task pid=69120)[0m     return expr_from_dict(self.as_expr_dict(), *symbols)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 405, in expr_from_dict
+[36m(main_task pid=69120)[0m     return Add(*result)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 335, in flatten
+[36m(main_task pid=69120)[0m     newseq.append(Mul(c, s))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 685, in flatten
+[36m(main_task pid=69120)[0m     elif coeff.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 503, in getit
+[36m(main_task pid=69120)[0m     return _ask(fact, self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 566, in _ask
+[36m(main_task pid=69120)[0m     assumptions.deduce_all_facts(((fact_i, fact_i_value),))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/facts.py", line 633, in deduce_all_facts
+[36m(main_task pid=69120)[0m     if all(self.get(k) is v for k, v in bcond):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:38,486:Error comparing Eq(P(x), (x - 1/2)**2001 + 1/2) and -1*1/2*(2*x - 1)**2001 + 1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7218, in cancel
+[36m(main_task pid=69120)[0m     return c*(P.as_expr()/Q.as_expr())
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 643, in as_expr
+[36m(main_task pid=69120)[0m     return expr_from_dict(self.as_expr_dict(), *symbols)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 403, in expr_from_dict
+[36m(main_task pid=69120)[0m     result.append(Mul(*term))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 685, in flatten
+[36m(main_task pid=69120)[0m     elif coeff.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 502, in getit
+[36m(main_task pid=69120)[0m     self._assumptions = self.default_assumptions.copy()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 482, in copy
+[36m(main_task pid=69120)[0m     return self.__class__(self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 479, in __init__
+[36m(main_task pid=69120)[0m     self.deduce_all_facts(facts)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/facts.py", line 616, in deduce_all_facts
+[36m(main_task pid=69120)[0m     beta_maytrigger = set()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:41,506:Error comparing Eq(P(x), (x - 1/2)**2001 + 1/2) and -1*1*x*(1 - x)*(x - 1/2)**2000/2**2000 + 1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 499, in getit
+[36m(main_task pid=69120)[0m     return self._assumptions[fact]
+[36m(main_task pid=69120)[0m KeyError: 'zero'
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m During handling of the above exception, another exception occurred:
+[36m(main_task pid=69120)[0m 
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7182, in cancel
+[36m(main_task pid=69120)[0m     R, (F, G) = sring((p, q), *gens, **args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 163, in sring
+[36m(main_task pid=69120)[0m     reps, opt = _parallel_dict_from_expr(exprs, opt)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in _parallel_dict_from_expr
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 344, in <listcomp>
+[36m(main_task pid=69120)[0m     exprs = [ expr.expand() for expr in exprs ]
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3673, in expand
+[36m(main_task pid=69120)[0m     expr, hit = Expr._expand_hint(expr, hint, deep=deep, **hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/expr.py", line 3612, in _expand_hint
+[36m(main_task pid=69120)[0m     newexpr = getattr(expr, hint)(**hints)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 948, in _eval_expand_mul
+[36m(main_task pid=69120)[0m     terms = self.func._expandsums(sums)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 913, in _expandsums
+[36m(main_task pid=69120)[0m     added = Add(*terms)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 318, in flatten
+[36m(main_task pid=69120)[0m     if c.is_zero:
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 502, in getit
+[36m(main_task pid=69120)[0m     self._assumptions = self.default_assumptions.copy()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 482, in copy
+[36m(main_task pid=69120)[0m     return self.__class__(self)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/assumptions.py", line 479, in __init__
+[36m(main_task pid=69120)[0m     self.deduce_all_facts(facts)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/facts.py", line 633, in deduce_all_facts
+[36m(main_task pid=69120)[0m     if all(self.get(k) is v for k, v in bcond):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 00:08:44,535:Error comparing Eq(P(x), (x - 1/2)**2001 + 1/2) and x**2001/2 + 1/2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 644, in simplify
+[36m(main_task pid=69120)[0m     _e = cancel(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 7218, in cancel
+[36m(main_task pid=69120)[0m     return c*(P.as_expr()/Q.as_expr())
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/rings.py", line 643, in as_expr
+[36m(main_task pid=69120)[0m     return expr_from_dict(self.as_expr_dict(), *symbols)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyutils.py", line 405, in expr_from_dict
+[36m(main_task pid=69120)[0m     return Add(*result)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/add.py", line 335, in flatten
+[36m(main_task pid=69120)[0m     newseq.append(Mul(c, s))
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/cache.py", line 72, in wrapper
+[36m(main_task pid=69120)[0m     retval = cfunc(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/operations.py", line 98, in __new__
+[36m(main_task pid=69120)[0m     c_part, nc_part, order_symbols = cls.flatten(args)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/mul.py", line 657, in flatten
+[36m(main_task pid=69120)[0m     if coeff in (S.Infinity, S.NegativeInfinity):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 3282, in __eq__
+[36m(main_task pid=69120)[0m     return other is S.NegativeInfinity or other == float('-inf')
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 1939, in __eq__
+[36m(main_task pid=69120)[0m     return Rational.__eq__(self, other)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/numbers.py", line 1593, in __eq__
+[36m(main_task pid=69120)[0m     other = _sympify(other)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/sympify.py", line 514, in _sympify
+[36m(main_task pid=69120)[0m     return sympify(a, strict=True)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:00:08,026:Error comparing (0 < k) & (k <= 2*sqrt(2 + sqrt(5))) and k >= 4
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'GreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:00:08,088:Error comparing (0 < k) & (k <= 2*sqrt(2 + sqrt(5))) and k > 0
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictGreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:00:08,092:Error comparing (0 < k) & (k <= 2*sqrt(2 + sqrt(5))) and k >= 2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'GreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:04:38,190:Error comparing (1 <= k) & (k < pi/2) and k >= 2
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'GreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:14:01,015:Error comparing Eq(rho**2, C*sin(2*varphi)) and Eq((x**2 + y**2)**2, -1*2*a*x*y)
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 274, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     if type(gold) == type(pred) and sympy_expr_eq(gold.lhs - gold.rhs, pred.lhs - pred.rhs, float_rounding, numeric_precision):  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 585, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_symbolic_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 163, in sympy_symbolic_eq
+[36m(main_task pid=69120)[0m     a_b_diff = simplify((a - b))  # type: ignore
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/simplify.py", line 699, in simplify
+[36m(main_task pid=69120)[0m     expr = trigsimp(expr, deep=True)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/trigsimp.py", line 565, in trigsimp
+[36m(main_task pid=69120)[0m     expr_simplified = trigsimpfunc(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/trigsimp.py", line 558, in <lambda>
+[36m(main_task pid=69120)[0m     'matching': (lambda x: futrig(x)),
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/trigsimp.py", line 1159, in futrig
+[36m(main_task pid=69120)[0m     e = bottom_up(e, _futrig)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/traversal.py", line 233, in bottom_up
+[36m(main_task pid=69120)[0m     rv = F(rv)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/trigsimp.py", line 1226, in _futrig
+[36m(main_task pid=69120)[0m     e = greedy(tree, objective=Lops)(e)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/strategies/core.py", line 150, in minrule
+[36m(main_task pid=69120)[0m     return min([rule(expr) for rule in rules], key=objective)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/strategies/core.py", line 150, in <listcomp>
+[36m(main_task pid=69120)[0m     return min([rule(expr) for rule in rules], key=objective)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/strategies/core.py", line 64, in chain_rl
+[36m(main_task pid=69120)[0m     expr = rule(expr)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/trigsimp.py", line 1194, in <lambda>
+[36m(main_task pid=69120)[0m     lambda x: _eapply(factor, x, trigs),
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/simplify/trigsimp.py", line 1250, in _eapply
+[36m(main_task pid=69120)[0m     return func(e)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 6577, in factor
+[36m(main_task pid=69120)[0m     return _generic_factor(f, gens, args, method='factor')
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 6258, in _generic_factor
+[36m(main_task pid=69120)[0m     return _symbolic_factor(sympify(expr), opt, method)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 6198, in _symbolic_factor
+[36m(main_task pid=69120)[0m     coeff, factors = _symbolic_factor_list(together(expr, fraction=opt['fraction']), opt, method)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 6163, in _symbolic_factor_list
+[36m(main_task pid=69120)[0m     _coeff, _factors = func()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polytools.py", line 3378, in factor_list
+[36m(main_task pid=69120)[0m     coeff, factors = f.rep.factor_list()
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/polyclasses.py", line 1637, in factor_list
+[36m(main_task pid=69120)[0m     coeff, factors = dmp_factor_list(f._rep, f.lev, f.dom)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 1569, in dmp_factor_list
+[36m(main_task pid=69120)[0m     coeff, factors = dmp_zz_factor(f, v, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 1189, in dmp_zz_factor
+[36m(main_task pid=69120)[0m     H = dmp_zz_wang(g, u, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 1112, in dmp_zz_wang
+[36m(main_task pid=69120)[0m     factors = dmp_zz_wang_hensel_lifting(f, H, LC, A, p, u, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 976, in dmp_zz_wang_hensel_lifting
+[36m(main_task pid=69120)[0m     T = dmp_zz_diophantine(G, C, I, d, p, w - 1, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 901, in dmp_zz_diophantine
+[36m(main_task pid=69120)[0m     S = dmp_zz_diophantine(G, C, A, d, p, v, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 921, in dmp_zz_diophantine
+[36m(main_task pid=69120)[0m     T = dmp_zz_diophantine(G, C, A, d, p, v, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 921, in dmp_zz_diophantine
+[36m(main_task pid=69120)[0m     T = dmp_zz_diophantine(G, C, A, d, p, v, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 901, in dmp_zz_diophantine
+[36m(main_task pid=69120)[0m     S = dmp_zz_diophantine(G, C, A, d, p, v, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 881, in dmp_zz_diophantine
+[36m(main_task pid=69120)[0m     T = dup_zz_diophantine(F, n - i, p, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/factortools.py", line 831, in dup_zz_diophantine
+[36m(main_task pid=69120)[0m     s, t, G = gf_gcdex(g, f, p, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/galoistools.py", line 1143, in gf_gcdex
+[36m(main_task pid=69120)[0m     p0, r0 = gf_monic(f, p, K)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/polys/galoistools.py", line 1173, in gf_monic
+[36m(main_task pid=69120)[0m     def gf_monic(f, p, K):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 43, in handler
+[36m(main_task pid=69120)[0m     raise TimeoutError("Operation timed out!")
+[36m(main_task pid=69120)[0m TimeoutError: Operation timed out!
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:14:02,858:Error comparing (-1 <= a) & (a < -3/4) and a > -3/4
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 570, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     return sympy_compare_relational(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 259, in sympy_compare_relational
+[36m(main_task pid=69120)[0m     return all(sympy_compare_relational(g, p, float_rounding, numeric_precision) for g, p in zip(gold._unsorted_args, pred._unsorted_args))
+[36m(main_task pid=69120)[0m AttributeError: 'StrictGreaterThan' object has no attribute '_unsorted_args'
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,905:Error comparing zoo and 13/30
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,909:Error comparing zoo and 14/15
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,912:Error comparing zoo and 7/18
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,913:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,915:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,918:Error comparing zoo and 7/15
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,920:Error comparing zoo and 7/15
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=69120)[0m ERROR:2025-05-16 01:18:38,923:Error comparing zoo and zoo
+[36m(main_task pid=69120)[0m Traceback (most recent call last):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=69120)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=69120)[0m     return func(*args, **kwargs)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=69120)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=69120)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=69120)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=69120)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=69120)[0m ValueError: Can't evaluate nan or zoo

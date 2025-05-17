@@ -6,3 +6,4 @@
 /wandb/**
 /train_results/**
 /dataset/**
+/eval_scripts/prefix_results/**

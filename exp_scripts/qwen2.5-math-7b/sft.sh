@@ -6,16 +6,22 @@ export WANDB_PROJECT="rl-sft"
 
 # data.val_files=$DATA_DIR/valid.parquet \
 
-torchrun --standalone --nnodes=1 --nproc_per_node=8 \
-     -m verl.trainer.fsdp_sft_trainer \
-    data.train_files=$DATA_DIR/openr1.parquet \
-    optim.lr=1e-6 \
+python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=8 \
+     -m verl.trainer.my_fsdp_sft_trainer \
+    data.train_files=$DATA_DIR/sft.parquet \
+    data.val_files=$DATA_DIR/sft_val.parquet \
+    optim.lr=1e-5 \
     data.prompt_key=prompt \
-    data.response_key=target \
-    data.train_batch_size=256 \
-    data.max_length=8192 \
+    data.response_key=answer \
+    data.train_batch_size=96 \
+    data.micro_batch_size=8 \
+    data.max_length=16384 \
     model.partial_pretrain=$MODEL_PATH \
+    model.enable_gradient_checkpointing=True \
     trainer.project_name=$WANDB_PROJECT \
     trainer.experiment_name="$EXP_NAME" \
-    trainer.total_epochs=10 \
+    trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
+    trainer.total_epochs=5 \
     trainer.logger=['console','wandb']
+
+python /jizhicfs/hymiezhao/ml/busy.py

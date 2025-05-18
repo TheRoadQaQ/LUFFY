@@ -34,6 +34,8 @@ def apply_qwen_math_template(question: str):
 def main(input_file, output_file, model_path, debug=False, remove_system=True, template='own', temperature=0.6, top_p=1.0, max_tokens=8192):
     # 数据处理
     df = pd.read_parquet(input_file)
+    #df = df[:10]
+    
     messages = df['prompt'].tolist()
     # if debug:
         # messages = messages[:10]

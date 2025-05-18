@@ -24,6 +24,7 @@ python -m verl.semi_mix_src.main_mix_ppo \
     data.max_response_length=8192 \
     actor_rollout_ref.model.path=$MODEL_PATH \
     actor_rollout_ref.actor.optim.lr=1e-6 \
+    actor_rollout_ref.actor.grad_clip=1.0 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     actor_rollout_ref.actor.ppo_micro_batch_size=64 \

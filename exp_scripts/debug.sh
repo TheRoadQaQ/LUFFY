@@ -25,7 +25,8 @@ CUDA_VISIBLE_DEVICES=3 ray start --head --include-dashboard=true --num-cpus=50 -
 
 # Train over a single node, 8 A100-80GB GPUs.
 # semi_mix_src
-CUDA_VISIBLE_DEVICES=3 python3 -m verl.semi_mix_src.main_mix_ppo \
+CUDA_VISIBLE_DEVICES=4 python3 -m verl.semi_mix_src_rebatch.main_mix_ppo \
+    +data.max_buffer_times=1 \
     algorithm.adv_estimator=grpo \
     data.train_files=$train_files \
     data.val_files=$test_files \

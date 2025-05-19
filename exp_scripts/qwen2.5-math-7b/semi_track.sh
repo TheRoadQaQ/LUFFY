@@ -15,6 +15,8 @@ export WANDB_PROJECT="rl-sft"
 
 # Train over a single node, 8 A100-80GB GPUs.
 python -m verl.semi_mix_src.main_mix_ppo \
+    +trainer.track_or_not=True \
+    +train.track_freq=30 \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/sub_8000_openr1.parquet \
     data.val_files=$DATA_DIR/sub_1_openr1.parquet \
@@ -55,8 +57,8 @@ python -m verl.semi_mix_src.main_mix_ppo \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=1 \
-    trainer.save_freq=30 \
-    trainer.test_freq=100 \
+    trainer.save_freq=500 \
+    trainer.test_freq=500 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.use_sft_prefix_reward=False \
     actor_rollout_ref.rollout.n_prefix=1 \
@@ -70,7 +72,7 @@ python -m verl.semi_mix_src.main_mix_ppo \
     actor_rollout_ref.actor.loss_remove_token_mean=True \
     actor_rollout_ref.actor.loss_remove_clip=True \
     data.reward_impl_version=3 \
-    trainer.max_optim_to_keep=7 \
+    trainer.max_optim_to_keep=3 \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \

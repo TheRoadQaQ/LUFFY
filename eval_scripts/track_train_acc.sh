@@ -1,18 +1,17 @@
 #!/bin/bash
 
 DATA=../dataset/sub_1000_openr1.parquet
-OUTPUT_DIR=./tracking_results/
+OUTPUT_DIR=./track_results/on-policy/
 TEMPLATE=own
 
 # Define arrays for models and their paths
+# /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 MODEL_PATHS=(
-  /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
-  # Add more model paths here
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/global_step_30/actor/huggingface/
 )
 
 MODEL_NAMES=(
-  Qwen-Math-7B
-  # Add corresponding model names here
+  Step-30
 )
 
 # Check if arrays have same length
@@ -29,7 +28,7 @@ for i in "${!MODEL_PATHS[@]}"; do
   echo "Processing model: $MODEL_NAME"
   echo "Model path: $MODEL_PATH"
   
-  CUDA_VISIBLE_DEVICES=1,2,3,4 python generate_acc.py \
+  CUDA_VISIBLE_DEVICES=0,1,2,3 python generate_acc.py \
     --n 8 \
     --model_path "$MODEL_PATH" \
     --input_file "$DATA" \

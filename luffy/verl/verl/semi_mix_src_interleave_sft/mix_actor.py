@@ -59,8 +59,6 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
         # make sure we are in training mode
         self.actor_module.train()
 
-        # breakpoint()
-
         assert self.config.ppo_mini_batch_size % self.config.ppo_micro_batch_size == 0
         self.gradient_accumulation = self.config.ppo_mini_batch_size // self.config.ppo_micro_batch_size
         temperature = data.meta_info['temperature']  # temperature must be in the data.meta_info to avoid slient error
@@ -225,6 +223,76 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
                 grad_norm = self._optimizer_step()
                 data = {'actor/grad_norm': grad_norm.detach().item()}
                 append_to_dict(metrics, data)
+        self.actor_optimizer.zero_grad()
+        if self.alpha_optimizer is not None:
+            self.alpha_optimizer.zero_grad()
+        return metrics
+    
+    def sft_update_policy(self, data: DataProto):
+        breakpoint()
+
+        # make sure we are in training mode
+        self.actor_module.train()
+
+        assert self.config.sft.sft_data_size % self.config.sft.sft_mini_batch_size == 0
+        assert self.config.sft.sft_mini_batch_size % self.config.sft.sft_micro_batch_size == 0
+
+        self.gradient_accumulation = self.config.sft.sft_mini_batch_size // self.config.sft.sft_micro_batch_size
+
+        select_keys = ['input_ids', 'attention_mask', 'position_ids', 'responses']
+        batch = data.select(batch_keys=select_keys).batch
+
+        # Split to make minibatch iterator for updating the actor
+        # See PPO paper for details. https://arxiv.org/abs/1707.06347
+        dataloader = batch.split(self.config.sft.sft_mini_batch_size)
+
+        metrics = {}
+        for _ in range(self.config.sft.sft_epochs):
+            for batch_idx, data in enumerate(dataloader):
+                # split batch into micro_batches
+                mini_batch = data
+                micro_batches = mini_batch.split(self.config.sft.sft_micro_batch_size)
+
+                self.actor_optimizer.zero_grad()
+                if self.alpha_optimizer is not None:
+                    self.alpha_optimizer.zero_grad()
+
+                for data in micro_batches:
+                    print("SFT MICROBATCH STEP")
+                    data = data.cuda()  # actor device is cpu when using offload
+                    responses = data['responses']
+                    response_length = responses.size(1)
+                    attention_mask = data['attention_mask']
+                    response_mask = attention_mask[:, -response_length:]
+
+                    entropy_coeff = self.config.sft.entropy_coeff
+
+                    entropy, log_prob = self._forward_micro_batch(micro_batch=data, temperature=1.0)
+
+                    from .mix_core_alg import compute_sft_loss
+                    loss_fn = compute_sft_loss
+                    ret_dict = loss_fn(log_prob=log_prob, eos_mask=response_mask)
+                    sft_loss = ret_dict["sft_loss"]
+                
+                    # compute entropy loss from entropy
+                    entropy_loss = verl_F.masked_mean(entropy, response_mask)
+
+                    # compute policy loss
+                    loss = sft_loss - entropy_loss * entropy_coeff
+                        
+                    loss = loss / self.gradient_accumulation
+                    loss.backward()
+
+                    data = {
+                        'actor/sft_entropy_loss': entropy_loss.detach().item(),
+                        'actor/sft_loss': sft_loss.detach().item()
+                    }
+                    append_to_dict(metrics, data)
+
+                grad_norm = self._optimizer_step()
+                data = {'actor/sft_grad_norm': grad_norm.detach().item()}
+                append_to_dict(metrics, data)
+
         self.actor_optimizer.zero_grad()
         if self.alpha_optimizer is not None:
             self.alpha_optimizer.zero_grad()

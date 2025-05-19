@@ -356,7 +356,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
             if self.config.trainer.get('val_only', False):
                 return
             
-        breakpoint()
+        #breakpoint()
 
         # we start from step 1
         self.global_steps += 1

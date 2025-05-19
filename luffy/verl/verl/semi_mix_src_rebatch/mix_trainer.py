@@ -19,6 +19,7 @@ This trainer supports model-agonistic model initialization with huggingface
 import os
 import uuid
 import random
+import copy
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 from enum import Enum
@@ -355,7 +356,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
             if self.config.trainer.get('val_only', False):
                 return
             
-        #breakpoint()
+        breakpoint()
 
         # we start from step 1
         self.global_steps += 1
@@ -378,7 +379,6 @@ class MIXRayPPOTrainer(RayPPOTrainer):
             for batch_dict in self.train_dataloader:
                 
                 batch: DataProto = DataProto.from_single_dict(batch_dict)
-                batch_copy: DataProto = DataProto.from_single_dict(batch_dict)
 
                 if not (buffer_batch is None and remaining_batch is None):
                     new_batch = batch
@@ -397,6 +397,12 @@ class MIXRayPPOTrainer(RayPPOTrainer):
 
                     remaining_batch = new_batch.slice(range(batch_size, len(new_batch)))
                     buffer_batch = None
+                
+                # maintaing
+                batch_copy = DataProto()
+                batch_copy.batch = batch.batch.copy()
+                batch_copy.non_tensor_batch = copy.deepcopy(batch.non_tensor_batch)
+                batch_copy.meta_info = copy.deepcopy(batch.meta_info)
 
                 metrics = {}
                 timing_raw = {}

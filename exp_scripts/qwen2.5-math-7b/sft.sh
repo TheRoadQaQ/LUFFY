@@ -14,10 +14,12 @@ python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=8 \
     data.prompt_key=prompt \
     data.response_key=answer \
     data.train_batch_size=96 \
-    data.micro_batch_size=8 \
+    data.micro_batch_size=48 \
     data.max_length=16384 \
     model.partial_pretrain=$MODEL_PATH \
     model.enable_gradient_checkpointing=True \
+    +trainer.do_validation=False \
+    +trainer.save_checkpoint_steps=238 \
     trainer.project_name=$WANDB_PROJECT \
     trainer.experiment_name="$EXP_NAME" \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \

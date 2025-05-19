@@ -283,7 +283,7 @@ class MyFSDPSFTTrainer(object):
 
         step_loss = torch.tensor(step_loss).cuda()
         torch.distributed.all_reduce(step_loss, op=torch.distributed.ReduceOp.AVG)
-        return {'train/loss': step_loss.detach().item(), 'train/lr(1e-3)': lr * 1e3}
+        return {'train/loss': step_loss.detach().item(), 'lr': lr }
 
     def validation_step(self, batch: TensorDict):
         self.fsdp_model.eval()
@@ -291,6 +291,7 @@ class MyFSDPSFTTrainer(object):
             loss = self._compute_loss(batch)
             torch.distributed.all_reduce(loss, op=torch.distributed.ReduceOp.AVG)
         return loss
+        
 
     def save_checkpoint(self, step):
         # save checkpoint
@@ -358,21 +359,27 @@ class MyFSDPSFTTrainer(object):
                     # Save final checkpoint
                     self.save_checkpoint(step=global_step)
                     return
+                
+                if global_step % self.config.trainer.save_checkpoint_steps == 0:
+                    self.save_checkpoint(step=global_step)
 
             # validation
-            val_losses = []
-            for data in self.val_dataloader:
-                data = TensorDict(data, batch_size=self.config.data.micro_batch_size).cuda()
-                val_loss = self.validation_step(data)
-                val_losses.append(val_loss)
-            if rank == 0:
-                val_loss = torch.mean(torch.stack(val_losses))
-                metric = {'val/loss': val_loss.detach().item()}
-                tracking.log(data=metric, step=global_step)
+            if self.config.trainer.get("do_validation", True):
+                val_losses = []
+                for data in self.val_dataloader:
+                    data = TensorDict(data, batch_size=self.config.data.micro_batch_size).cuda()
+                    val_loss = self.validation_step(data)
+                    val_losses.append(val_loss)
+                if rank == 0:
+                    val_loss = torch.mean(torch.stack(val_losses))
+                    metric = {'val/loss': val_loss.detach().item()}
+                    tracking.log(data=metric, step=global_step)
+            
+            
             torch.distributed.barrier()
 
             # save checkpoint
-            self.save_checkpoint(step=global_step)
+            #self.save_checkpoint(step=global_step)
 
 import hydra
 

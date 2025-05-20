@@ -229,7 +229,7 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
         return metrics
     
     def sft_update_policy(self, data: DataProto):
-        breakpoint()
+        #breakpoint()
 
         # make sure we are in training mode
         self.actor_module.train()

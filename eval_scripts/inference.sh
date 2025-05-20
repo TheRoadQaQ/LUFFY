@@ -19,6 +19,10 @@ MODEL_PATH=/jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_SFT/gl
 MODEL_NAME=SFT-7B-epoch2
 TEMPLATE=own
 
+MODEL_PATH=/jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_SFT/global_step_1190
+MODEL_NAME=SFT-7B-epoch2.5
+TEMPLATE=own
+
 CUDA_VISIBLE_DEVICES=4,5,6,7 python generate_vllm.py \
   --model_path $MODEL_PATH \
   --input_file $DATA \

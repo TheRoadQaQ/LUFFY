@@ -626,7 +626,9 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                             sft_train_batch.rename("tgt_input_ids", "responses")
 
                             self._balance_batch(sft_train_batch, metrics=metrics)
-                            actor_output = self.actor_rollout_wg.sft_update_actor(sft_train_batch)
+                            sft_output = self.actor_rollout_wg.sft_update_actor(sft_train_batch)
+                            sft_output_metrics = reduce_metrics(sft_output.meta_info['metrics'])
+                            metrics.update(sft_output_metrics)
 
                     # validate
                     if self.val_reward_fn is not None and self.config.trainer.test_freq > 0 and \

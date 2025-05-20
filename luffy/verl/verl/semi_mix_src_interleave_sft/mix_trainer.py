@@ -370,7 +370,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
         batch_size = self.config.data.train_batch_size
         n_samples = self.config.actor_rollout_ref.rollout.n
 
-        #breakpoint()
+        breakpoint()
 
         for _ in range(self.config.trainer.total_epochs):
             

@@ -223,6 +223,8 @@ class MIXActorRolloutRefWorker(Worker):
 
         log_gpu_memory_usage('After Actor FSDP init', logger=logger)
 
+        actor_sft_optimizer = None
+
         # TODO: add more optimizer args into config
         if role == 'actor':
             from verl.utils.torch_functional import get_constant_schedule_with_warmup
@@ -239,13 +241,15 @@ class MIXActorRolloutRefWorker(Worker):
 
             actor_lr_scheduler = get_constant_schedule_with_warmup(optimizer=actor_optimizer,
                                                                    num_warmup_steps=num_warmup_steps)
+            
+            actor_sft_optimizer = optim.SGD(actor_module_fsdp.parameters(), lr=optim_config.sft.lr)
         else:
             actor_optimizer = None
             actor_lr_scheduler = None
 
         log_gpu_memory_usage('After actor optimizer init', logger=logger)
 
-        return actor_module_fsdp, actor_optimizer, actor_lr_scheduler, actor_model_config
+        return actor_module_fsdp, actor_optimizer, actor_lr_scheduler, actor_model_config, actor_sft_optimizer
 
     def _build_rollout(self):
         from torch.distributed.device_mesh import init_device_mesh
@@ -301,15 +305,16 @@ class MIXActorRolloutRefWorker(Worker):
             else:
                 optim_config = self.config.actor.optim
                 fsdp_config = OmegaConf.create()
-            self.actor_module_fsdp, self.actor_optimizer, self.actor_lr_scheduler, self.actor_model_config = self._build_model_optimizer(
-                model_path=self.config.model.path,
-                fsdp_config=fsdp_config,
-                optim_config=optim_config,
-                override_model_config=override_model_config,
-                use_remove_padding=use_remove_padding,
-                enable_gradient_checkpointing=self.config.model.get('enable_gradient_checkpointing', False),
-                trust_remote_code=self.config.model.get('trust_remote_code', False),
-                role='actor')
+            self.actor_module_fsdp, self.actor_optimizer, self.actor_lr_scheduler, \
+                self.actor_model_config, self.actor_sft_optimizer= self._build_model_optimizer(
+                    model_path=self.config.model.path,
+                    fsdp_config=fsdp_config,
+                    optim_config=optim_config,
+                    override_model_config=override_model_config,
+                    use_remove_padding=use_remove_padding,
+                    enable_gradient_checkpointing=self.config.model.get('enable_gradient_checkpointing', False),
+                    trust_remote_code=self.config.model.get('trust_remote_code', False),
+                    role='actor')
 
             # get the original unwrapped module
             self.actor_module = self.actor_module_fsdp._fsdp_wrapped_module
@@ -329,7 +334,9 @@ class MIXActorRolloutRefWorker(Worker):
             from .mix_actor import MIXDataParallelPPOActor
             self.actor = MIXDataParallelPPOActor(config=self.config.actor,
                                               actor_module=self.actor_module_fsdp,
-                                              actor_optimizer=self.actor_optimizer)
+                                              actor_optimizer=self.actor_optimizer,
+                                              actor_sft_optimizer=self.actor_sft_optimizer
+                                              )
 
         if self._is_rollout:
             self.rollout, self.rollout_sharding_manager = self._build_rollout()

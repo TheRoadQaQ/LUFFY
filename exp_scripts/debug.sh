@@ -29,6 +29,7 @@ CUDA_VISIBLE_DEVICES=4 python3 -m verl.semi_mix_src_interleave_sft.main_mix_ppo 
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=8 \
     +actor_rollout_ref.actor.sft.sft_micro_batch_size=1 \
     +actor_rollout_ref.actor.sft.entropy_coeff=0.001 \
+    +actor_rollout_ref.actor.optim.sft.lr=1e-5 \
     algorithm.adv_estimator=grpo \
     data.train_files=$train_files \
     data.val_files=$test_files \

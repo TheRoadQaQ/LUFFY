@@ -40,6 +40,7 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
         config,
         actor_module: nn.Module,
         actor_optimizer: torch.optim.Optimizer = None,
+        actor_sft_optimizer: torch.optim.Optimizer = None,
     ):
         super().__init__(config, actor_module, actor_optimizer)
         self.use_adaptive_temperature = self.config.use_adaptive_temperature
@@ -54,6 +55,7 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
                                           weight_decay=1e-2)
         else:
             self.alpha_optimizer = None
+        self.actor_sft_optimizer = actor_sft_optimizer
             
     def update_policy(self, data: DataProto):
         # make sure we are in training mode
@@ -253,9 +255,7 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
                 mini_batch = data
                 micro_batches = mini_batch.split(self.config.sft.sft_micro_batch_size)
 
-                self.actor_optimizer.zero_grad()
-                if self.alpha_optimizer is not None:
-                    self.alpha_optimizer.zero_grad()
+                self.actor_sft_optimizer.zero_grad()
 
                 for data in micro_batches:
                     print("SFT MICROBATCH STEP")
@@ -289,14 +289,25 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
                     }
                     append_to_dict(metrics, data)
 
-                grad_norm = self._optimizer_step()
+                grad_norm = self._sft_optimizer_step()
                 data = {'actor/sft_grad_norm': grad_norm.detach().item()}
                 append_to_dict(metrics, data)
 
-        self.actor_optimizer.zero_grad()
-        if self.alpha_optimizer is not None:
-            self.alpha_optimizer.zero_grad()
+        self.actor_sft_optimizer.zero_grad()
+        
         return metrics
+    
+    def _sft_optimizer_step(self):
+        assert self.config.grad_clip is not None
+
+        if isinstance(self.actor_module, FSDP):
+            grad_norm = self.actor_module.clip_grad_norm_(max_norm=self.config.grad_clip)
+        else:
+            grad_norm = torch.nn.utils.clip_grad_norm_(self.actor_module.parameters(), max_norm=self.config.grad_clip)
+        self.actor_sft_optimizer.step()
+        if self.alpha_optimizer is not None:
+            self.alpha_optimizer.step()
+        return grad_norm
 
     def _optimizer_step(self):
         assert self.config.grad_clip is not None

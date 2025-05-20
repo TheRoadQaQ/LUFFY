@@ -23,7 +23,8 @@ rm -rf ./train_results/${WANDB_PROJECT}/${EXP_NAME}
 ray stop
 CUDA_VISIBLE_DEVICES=4 ray start --head --include-dashboard=true --num-cpus=50 --num-gpus=1
 
-CUDA_VISIBLE_DEVICES=4 python3 -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
+# semi_mix_src_interleave_sft
+CUDA_VISIBLE_DEVICES=4 python3 -m verl.src_interleave_sft.main_mix_ppo \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=8 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=8 \

@@ -13,7 +13,7 @@ export DATA_DIR=./dataset/
 # old =  sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0 -> failed
 # new = rl -> AdamW; sft -> SGD   -> good
 # now = both AdamW  -> try now
-export EXP_NAME=7b_SEMI_LUFFY_INTERLEAVE_both_AdamW
+export EXP_NAME=7b_SEMI_LUFFY_INTERLEAVE_both_SGD
 export WANDB_PROJECT="rl-sft"
 
 # Train over a single node, 8 A100-80GB GPUs.
@@ -25,8 +25,8 @@ python -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
     +actor_rollout_ref.actor.sft.entropy_coeff=0.001 \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     +actor_rollout_ref.actor.optim.sft.lr=1e-5 \
-    +actor_rollout_ref.actor.optim.type="AdamW" \
-    +actor_rollout_ref.actor.optim.sft.type="AdamW" \
+    +actor_rollout_ref.actor.optim.type="SGD" \
+    +actor_rollout_ref.actor.optim.sft.type="SGD" \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/openr1.parquet \
     data.val_files=$DATA_DIR/valid.parquet \
@@ -48,7 +48,7 @@ python -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.grad_offload=False \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
-    +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=True \
+    +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=False \
     actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.temperature=1.0 \

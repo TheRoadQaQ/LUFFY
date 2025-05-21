@@ -21,16 +21,20 @@ export WANDB_PROJECT="rl-sft"
 rm -rf ./train_results/${WANDB_PROJECT}/${EXP_NAME} 
 
 ray stop
-CUDA_VISIBLE_DEVICES=4 ray start --head --include-dashboard=true --num-cpus=50 --num-gpus=1
+CUDA_VISIBLE_DEVICES=3 ray start --head --include-dashboard=true --num-cpus=50 --num-gpus=1
 
 # semi_mix_src_interleave_sft
-CUDA_VISIBLE_DEVICES=4 python3 -m verl.src_interleave_sft.main_mix_ppo \
+# src_interleave_sft
+CUDA_VISIBLE_DEVICES=3 python3 -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
+    +actor_rollout_ref.actor.optim.type="AdamW" \
+    +actor_rollout_ref.actor.optim.optim.type="AdamW" \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=8 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=8 \
     +actor_rollout_ref.actor.sft.sft_micro_batch_size=1 \
     +actor_rollout_ref.actor.sft.entropy_coeff=0.001 \
     +actor_rollout_ref.actor.optim.sft.lr=1e-5 \
+    actor_rollout_ref.actor.optim.lr=1e-6 \
     algorithm.adv_estimator=grpo \
     data.train_files=$train_files \
     data.val_files=$test_files \
@@ -39,7 +43,6 @@ CUDA_VISIBLE_DEVICES=4 python3 -m verl.src_interleave_sft.main_mix_ppo \
     data.max_prompt_length=1024 \
     data.max_response_length=8192 \
     actor_rollout_ref.model.path=$MODEL_PATH \
-    actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=1 \
     actor_rollout_ref.actor.ppo_micro_batch_size=1 \
@@ -52,6 +55,7 @@ CUDA_VISIBLE_DEVICES=4 python3 -m verl.src_interleave_sft.main_mix_ppo \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.grad_offload=False \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
+    +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=True \
     actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.temperature=1.0 \

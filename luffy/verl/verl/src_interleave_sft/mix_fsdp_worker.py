@@ -75,10 +75,13 @@ class MIXActorRolloutRefWorker(Worker):
         self._is_offload_param = False
         self._is_offload_grad = False
         self._is_offload_optimizer = False
+        self._is_offload_sft_optimizer = False
+
         if self._is_actor:
             self._is_offload_param = self.config.actor.fsdp_config.get('param_offload', False)
             self._is_offload_grad = self.config.actor.fsdp_config.get('grad_offload', False)
             self._is_offload_optimizer = self.config.actor.fsdp_config.get('optimizer_offload', False)
+            self._is_offload_sft_optimizer = self.config.actor.fsdp_config.get('sft_optimizer_offload', False)
         elif self._is_ref:
             # TODO: it seems that manual offload is slowly than FSDP offload
             self._is_offload_param = self.config.ref.fsdp_config.get('param_offload', False)
@@ -242,7 +245,11 @@ class MIXActorRolloutRefWorker(Worker):
             actor_lr_scheduler = get_constant_schedule_with_warmup(optimizer=actor_optimizer,
                                                                    num_warmup_steps=num_warmup_steps)
             
-            actor_sft_optimizer = optim.SGD(actor_module_fsdp.parameters(), lr=optim_config.sft.lr)
+            actor_sft_optimizer = optim.AdamW(actor_module_fsdp.parameters(),
+                                          lr=optim_config.sft.lr,
+                                          betas=optim_config.get('betas', (0.9, 0.999)),
+                                          weight_decay=optim_config.get('weight_decay', 1e-2))
+            
         else:
             actor_optimizer = None
             actor_lr_scheduler = None
@@ -323,9 +330,13 @@ class MIXActorRolloutRefWorker(Worker):
                 # param is require during state_dict in sharding manager
                 offload_fsdp_grad(module=self.actor_module_fsdp)
                 log_gpu_memory_usage('After offload actor grad during init', logger=logger)
+
             if self._is_offload_optimizer:
                 offload_fsdp_optimizer(optimizer=self.actor_optimizer)
                 log_gpu_memory_usage('After offload actor optimizer during init', logger=logger)
+
+
+
         # load from checkpoint
         if self._is_actor:
             OmegaConf.set_struct(self.config.actor, True)
@@ -406,6 +417,9 @@ class MIXActorRolloutRefWorker(Worker):
             offload_fsdp_param_and_grad(module=self.actor_module_fsdp, offload_grad=self._is_offload_grad)
         if self._is_offload_optimizer:
             offload_fsdp_optimizer(optimizer=self.actor_optimizer)
+        if self._is_offload_sft_optimizer:
+            offload_fsdp_optimizer(optimizer=self.actor_sft_optimizer)
+
         torch.cuda.empty_cache()
         return output
     
@@ -418,8 +432,9 @@ class MIXActorRolloutRefWorker(Worker):
             load_fsdp_param_and_grad(module=self.actor_module_fsdp,
                                      device_id=torch.cuda.current_device(),
                                      load_grad=self._is_offload_grad)
-        if self._is_offload_optimizer:
-            load_fsdp_optimizer(optimizer=self.actor_optimizer, device_id=torch.cuda.current_device())
+            
+        if self._is_offload_sft_optimizer:
+            load_fsdp_optimizer(optimizer=self.actor_sft_optimizer, device_id=torch.cuda.current_device())
 
         data.batch = data.batch.cuda()
 
@@ -449,8 +464,8 @@ class MIXActorRolloutRefWorker(Worker):
 
         if self._is_offload_param:
             offload_fsdp_param_and_grad(module=self.actor_module_fsdp, offload_grad=self._is_offload_grad)
-        if self._is_offload_optimizer:
-            offload_fsdp_optimizer(optimizer=self.actor_optimizer)
+        if self._is_offload_sft_optimizer:
+            offload_fsdp_optimizer(optimizer=self.actor_sft_optimizer)
         torch.cuda.empty_cache()
         return output
 

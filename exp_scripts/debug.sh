@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=3 ray start --head --include-dashboard=true --num-cpus=50 -
 
 # semi_mix_src_interleave_sft
 # src_interleave_sft
-CUDA_VISIBLE_DEVICES=3 python3 -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
+CUDA_VISIBLE_DEVICES=3 python3 -m verl.src_interleave_sft.main_mix_ppo \
     +actor_rollout_ref.actor.optim.type="AdamW" \
     +actor_rollout_ref.actor.optim.optim.type="AdamW" \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \

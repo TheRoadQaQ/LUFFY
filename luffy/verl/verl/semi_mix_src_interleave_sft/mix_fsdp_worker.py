@@ -425,6 +425,9 @@ class MIXActorRolloutRefWorker(Worker):
             offload_fsdp_param_and_grad(module=self.actor_module_fsdp, offload_grad=self._is_offload_grad)
         if self._is_offload_optimizer:
             offload_fsdp_optimizer(optimizer=self.actor_optimizer)
+        if self._is_offload_sft_optimizer:
+            offload_fsdp_optimizer(optimizer=self.actor_sft_optimizer)
+
         torch.cuda.empty_cache()
         return output
     
@@ -437,6 +440,7 @@ class MIXActorRolloutRefWorker(Worker):
             load_fsdp_param_and_grad(module=self.actor_module_fsdp,
                                      device_id=torch.cuda.current_device(),
                                      load_grad=self._is_offload_grad)
+            
         if self._is_offload_sft_optimizer:
             load_fsdp_optimizer(optimizer=self.actor_sft_optimizer, device_id=torch.cuda.current_device())
         

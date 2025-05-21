@@ -579,9 +579,6 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                                 sft_buffer_batch = None
                             else:
                                 sft_buffer_batch = sft_buffer_batch.slice(range(sft_data_size, len(sft_buffer_batch)))
-                            
-                            # rename tgt_input_ids
-                            # sft_train_batch.rename("tgt_input_ids", "responses")
 
                             self._balance_batch(sft_train_batch, metrics=metrics)
                             sft_output = self.actor_rollout_wg.sft_update_actor(sft_train_batch)

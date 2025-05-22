@@ -54,6 +54,15 @@ def extract_step(path):
         return int(match.group(1))
     return None
 
+import debugpy
+try:
+    # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
+    debugpy.listen(("localhost", 9501))
+    print("Waiting for debugger attach")
+    debugpy.wait_for_client()
+except Exception as e:
+    pass
+
 
 class MyFSDPSFTTrainer(object):
 
@@ -190,7 +199,7 @@ class MyFSDPSFTTrainer(object):
                                sync_module_states=True,
                                device_id=torch.cuda.current_device(),
                                cpu_offload=cpu_offload,
-                               use_orig_params=False)
+                               use_orig_params=True)
 
         log_gpu_memory_usage('After FSDP wrapping', logger=logger)
 
@@ -290,8 +299,37 @@ class MyFSDPSFTTrainer(object):
         with torch.no_grad():
             loss = self._compute_loss(batch)
             torch.distributed.all_reduce(loss, op=torch.distributed.ReduceOp.AVG)
-        return loss
+        return loss    
+
+
+    def validate(self, batch):
+        self.fsdp_model.eval()
+    
+        # Extract input_ids and attention_mask from batch
+        input_ids = batch['input_ids'].cuda()
+        attention_mask = batch['attention_mask'].cuda()
         
+        # Generate text using the model
+        with torch.no_grad():
+            with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
+                # Generate responses for the prompts in the batch
+                generated_ids = self.fsdp_model.generate(
+                    input_ids=batch['input_ids'],
+                    attention_mask=batch['attention_mask'],
+                    position_ids=batch['position_ids'],
+                    use_cache=False,
+                    max_new_tokens=400,
+                    do_sample=True,
+                    temperature=0.6,
+                    top_p=1.0,
+                    pad_token_id=self.tokenizer.pad_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id
+                )
+        
+        # Decode the generated text
+        generated_texts = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+
+        return
 
     def save_checkpoint(self, step):
         # save checkpoint
@@ -363,17 +401,18 @@ class MyFSDPSFTTrainer(object):
                 if global_step % self.config.trainer.save_checkpoint_steps == 0:
                     self.save_checkpoint(step=global_step)
 
-            # validation
-            if self.config.trainer.get("do_validation", True):
-                val_losses = []
-                for data in self.val_dataloader:
-                    data = TensorDict(data, batch_size=self.config.data.micro_batch_size).cuda()
-                    val_loss = self.validation_step(data)
-                    val_losses.append(val_loss)
-                if rank == 0:
-                    val_loss = torch.mean(torch.stack(val_losses))
-                    metric = {'val/loss': val_loss.detach().item()}
-                    tracking.log(data=metric, step=global_step)
+                # validation
+                if self.config.trainer.get("do_validation", True):
+                    if global_step % self.config.trainer.valid_steps == 0:
+                        val_losses = []
+                        for data in self.val_dataloader:
+                            data = TensorDict(data, batch_size=self.config.data.micro_batch_size).cuda()
+                            val_loss = self.validate(data)
+                            val_losses.append(val_loss)
+                        if rank == 0:
+                            val_loss = torch.mean(torch.stack(val_losses))
+                            metric = {'val/loss': val_loss.detach().item()}
+                            tracking.log(data=metric, step=global_step)
             
             
             torch.distributed.barrier()

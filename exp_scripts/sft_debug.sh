@@ -21,8 +21,9 @@ CUDA_VISIBLE_DIVICES=3,4 python -m torch.distributed.run --standalone --nnodes=1
     model.enable_gradient_checkpointing=True \
     trainer.project_name=$WANDB_PROJECT \
     trainer.experiment_name="$EXP_NAME" \
-    +trainer.do_validation=False \
-    +trainer.save_checkpoint_steps=1 \
+    +trainer.do_validation=True \
+    +trainer.valid_steps=1 \
+    +trainer.save_checkpoint_steps=1000 \
     trainer.total_epochs=3 \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
     trainer.logger=['console']

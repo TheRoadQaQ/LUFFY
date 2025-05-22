@@ -16,12 +16,12 @@ export WANDB_PROJECT="rl-sft"
 # origin sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0
 # Train over a single node, 8 A100-80GB GPUs.
 python -m verl.src_interleave_sft.main_mix_ppo \
-    +actor_rollout_ref.actor.sft.sft_epochs=2 \
-    +actor_rollout_ref.actor.sft.sft_data_size=64 \
-    +actor_rollout_ref.actor.sft.sft_mini_batch_size=64 \
+    +actor_rollout_ref.actor.sft.sft_epochs=1 \
+    +actor_rollout_ref.actor.sft.sft_data_size=128 \
+    +actor_rollout_ref.actor.sft.sft_mini_batch_size=128 \
     +actor_rollout_ref.actor.sft.sft_micro_batch_size=64 \
     +actor_rollout_ref.actor.sft.entropy_coeff=0.001 \
-    +actor_rollout_ref.actor.optim.sft.lr=1e-5 \
+    +actor_rollout_ref.actor.optim.sft.lr=1e-6 \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/openr1.parquet \
@@ -31,7 +31,7 @@ python -m verl.src_interleave_sft.main_mix_ppo \
     data.max_prompt_length=1024 \
     data.max_response_length=8192 \
     actor_rollout_ref.model.path=$MODEL_PATH \
-    actor_rollout_ref.actor.grad_clip=0.7 \
+    actor_rollout_ref.actor.grad_clip=0.5 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     actor_rollout_ref.actor.ppo_micro_batch_size=64 \
@@ -44,14 +44,14 @@ python -m verl.src_interleave_sft.main_mix_ppo \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.grad_offload=False \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
-    +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=False \
+    +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=True \
     actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.temperature=1.0 \
     actor_rollout_ref.rollout.val_temperature=0.6 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.80 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.rollout.n_val=1 \
+    actor_rollout_ref.rollout.n_val=2 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     actor_rollout_ref.rollout.max_prefix_len=8192 \
     algorithm.kl_ctrl.kl_coef=0.000 \

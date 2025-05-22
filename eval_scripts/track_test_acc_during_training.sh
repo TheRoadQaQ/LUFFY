@@ -1,17 +1,27 @@
 #!/bin/bash
 
-DATA=../dataset/sub_1000_openr1.parquet
-OUTPUT_DIR=./track_results/on-policy/
+OOD_DATA=../dataset/sub_1000_openr1.parquet
+#TRAIN_DATA=../dataset/sub_8000_openr1.parquet
+
+OUTPUT_DIR=./track_results/qwen-math-7b-on-policy/
 TEMPLATE=own
 
 # Define arrays for models and their paths
 # /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 MODEL_PATHS=(
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/global_step_30/actor/huggingface/
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_30/actor/
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_60/actor/
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_90/actor/
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_120/actor/
+  /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 )
 
 MODEL_NAMES=(
-  Step-30
+  Step_30
+  Step_60
+  Step_90
+  Step_120
+  Init
 )
 
 # Check if arrays have same length
@@ -30,8 +40,9 @@ for i in "${!MODEL_PATHS[@]}"; do
   
   CUDA_VISIBLE_DEVICES=0,1,2,3 python generate_acc.py \
     --n 8 \
+    --temperature 1.0 \
     --model_path "$MODEL_PATH" \
-    --input_file "$DATA" \
+    --input_file "$OOD_DATA" \
     --remove_system True \
     --output_file "$OUTPUT_DIR/sub_1000_openr1_${MODEL_NAME}_acc.parquet" \
     --template "$TEMPLATE"

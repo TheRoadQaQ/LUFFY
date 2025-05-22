@@ -75,12 +75,10 @@ class MIXActorRolloutRefWorker(Worker):
         self._is_offload_param = False
         self._is_offload_grad = False
         self._is_offload_optimizer = False
-        self._is_offload_sft_optimizer = False
         if self._is_actor:
             self._is_offload_param = self.config.actor.fsdp_config.get('param_offload', False)
             self._is_offload_grad = self.config.actor.fsdp_config.get('grad_offload', False)
             self._is_offload_optimizer = self.config.actor.fsdp_config.get('optimizer_offload', False)
-            self._is_offload_sft_optimizer = self.config.actor.fsdp_config.get('sft_optimizer_offload', False)
         elif self._is_ref:
             # TODO: it seems that manual offload is slowly than FSDP offload
             self._is_offload_param = self.config.ref.fsdp_config.get('param_offload', False)
@@ -225,12 +223,9 @@ class MIXActorRolloutRefWorker(Worker):
 
         log_gpu_memory_usage('After Actor FSDP init', logger=logger)
 
-        actor_sft_optimizer = None
-
         # TODO: add more optimizer args into config
         if role == 'actor':
             from verl.utils.torch_functional import get_constant_schedule_with_warmup
-
             actor_optimizer = optim.AdamW(actor_module_fsdp.parameters(),
                                           lr=optim_config.lr,
                                           betas=optim_config.get('betas', (0.9, 0.999)),
@@ -244,18 +239,13 @@ class MIXActorRolloutRefWorker(Worker):
 
             actor_lr_scheduler = get_constant_schedule_with_warmup(optimizer=actor_optimizer,
                                                                    num_warmup_steps=num_warmup_steps)
-                
-            actor_sft_optimizer = optim.AdamW(actor_module_fsdp.parameters(), 
-                                          lr=optim_config.sft.lr,
-                                          betas=optim_config.get('betas', (0.9, 0.999)),
-                                          weight_decay=optim_config.get('weight_decay', 1e-2))
         else:
             actor_optimizer = None
             actor_lr_scheduler = None
 
         log_gpu_memory_usage('After actor optimizer init', logger=logger)
 
-        return actor_module_fsdp, actor_optimizer, actor_lr_scheduler, actor_model_config, actor_sft_optimizer
+        return actor_module_fsdp, actor_optimizer, actor_lr_scheduler, actor_model_config
 
     def _build_rollout(self):
         from torch.distributed.device_mesh import init_device_mesh
@@ -311,16 +301,15 @@ class MIXActorRolloutRefWorker(Worker):
             else:
                 optim_config = self.config.actor.optim
                 fsdp_config = OmegaConf.create()
-            self.actor_module_fsdp, self.actor_optimizer, self.actor_lr_scheduler, \
-                self.actor_model_config, self.actor_sft_optimizer= self._build_model_optimizer(
-                    model_path=self.config.model.path,
-                    fsdp_config=fsdp_config,
-                    optim_config=optim_config,
-                    override_model_config=override_model_config,
-                    use_remove_padding=use_remove_padding,
-                    enable_gradient_checkpointing=self.config.model.get('enable_gradient_checkpointing', False),
-                    trust_remote_code=self.config.model.get('trust_remote_code', False),
-                    role='actor')
+            self.actor_module_fsdp, self.actor_optimizer, self.actor_lr_scheduler, self.actor_model_config = self._build_model_optimizer(
+                model_path=self.config.model.path,
+                fsdp_config=fsdp_config,
+                optim_config=optim_config,
+                override_model_config=override_model_config,
+                use_remove_padding=use_remove_padding,
+                enable_gradient_checkpointing=self.config.model.get('enable_gradient_checkpointing', False),
+                trust_remote_code=self.config.model.get('trust_remote_code', False),
+                role='actor')
 
             # get the original unwrapped module
             self.actor_module = self.actor_module_fsdp._fsdp_wrapped_module
@@ -332,9 +321,6 @@ class MIXActorRolloutRefWorker(Worker):
             if self._is_offload_optimizer:
                 offload_fsdp_optimizer(optimizer=self.actor_optimizer)
                 log_gpu_memory_usage('After offload actor optimizer during init', logger=logger)
-            if self._is_offload_sft_optimizer:
-                offload_fsdp_optimizer(optimizer=self.actor_sft_optimizer)
-                log_gpu_memory_usage('After offload actor sft optimizer during init', logger=logger)
         # load from checkpoint
         if self._is_actor:
             OmegaConf.set_struct(self.config.actor, True)
@@ -343,9 +329,7 @@ class MIXActorRolloutRefWorker(Worker):
             from .mix_actor import MIXDataParallelPPOActor
             self.actor = MIXDataParallelPPOActor(config=self.config.actor,
                                               actor_module=self.actor_module_fsdp,
-                                              actor_optimizer=self.actor_optimizer,
-                                              actor_sft_optimizer=self.actor_sft_optimizer
-                                              )
+                                              actor_optimizer=self.actor_optimizer)
 
         if self._is_rollout:
             self.rollout, self.rollout_sharding_manager = self._build_rollout()
@@ -415,55 +399,6 @@ class MIXActorRolloutRefWorker(Worker):
             offload_fsdp_param_and_grad(module=self.actor_module_fsdp, offload_grad=self._is_offload_grad)
         if self._is_offload_optimizer:
             offload_fsdp_optimizer(optimizer=self.actor_optimizer)
-        if self._is_offload_sft_optimizer:
-            offload_fsdp_optimizer(optimizer=self.actor_sft_optimizer)
-
-        torch.cuda.empty_cache()
-        return output
-    
-    @register(dispatch_mode=Dispatch.DP_COMPUTE_PROTO)
-    def sft_update_actor(self, data: DataProto):
-        data = data.to('cuda')
-
-        assert self._is_actor
-        if self._is_offload_param:
-            load_fsdp_param_and_grad(module=self.actor_module_fsdp,
-                                     device_id=torch.cuda.current_device(),
-                                     load_grad=self._is_offload_grad)
-            
-        if self._is_offload_sft_optimizer:
-            load_fsdp_optimizer(optimizer=self.actor_sft_optimizer, device_id=torch.cuda.current_device())
-        
-        data.batch = data.batch.cuda()
-
-        log_gpu_memory_usage('Before update policy', logger=logger)
-
-        with self.ulysses_sharding_manager:
-            data = self.ulysses_sharding_manager.preprocess_data(data=data)
-            # perform training
-            with Timer(name='sft_update_policy', logger=None) as timer:
-                metrics = self.actor.sft_update_policy(data=data)
-            delta_time = timer.last
-            global_num_tokens = data.meta_info['global_token_num']
-            estimated_flops, promised_flops = self.flops_counter.estimate_flops(global_num_tokens, delta_time)
-            metrics['mfu/sft_actor'] = estimated_flops * self.config.actor.sft.sft_epochs / promised_flops / self.world_size
-
-            self.actor_lr_scheduler.step()
-            lr = self.actor_lr_scheduler.get_last_lr()[0]
-            metrics['actor/sft_lr'] = lr
-
-            log_gpu_memory_usage('After update policy', logger=logger)
-
-            # TODO: here, we should return all metrics
-            output = DataProto(meta_info={'metrics': metrics})
-
-            output = self.ulysses_sharding_manager.postprocess_data(data=output)
-            output = output.to('cpu')
-
-        if self._is_offload_param:
-            offload_fsdp_param_and_grad(module=self.actor_module_fsdp, offload_grad=self._is_offload_grad)
-        if self._is_offload_sft_optimizer:
-            offload_fsdp_optimizer(optimizer=self.actor_sft_optimizer)
         torch.cuda.empty_cache()
         return output
 

@@ -110,7 +110,6 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
                     entropy_coeff = self.config.entropy_coeff
 
                     entropy, log_prob = self._forward_micro_batch(micro_batch=data, temperature=temperature)
-                    
 
                     if self.config.use_off_policy_loss:
                         from .mix_core_alg import compute_token_on_off_policy_loss
@@ -305,8 +304,7 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
         else:
             grad_norm = torch.nn.utils.clip_grad_norm_(self.actor_module.parameters(), max_norm=self.config.grad_clip)
         self.actor_sft_optimizer.step()
-        if self.alpha_optimizer is not None:
-            self.alpha_optimizer.step()
+        
         return grad_norm
 
     def _optimizer_step(self):
@@ -317,6 +315,5 @@ class MIXDataParallelPPOActor(DataParallelPPOActor):
         else:
             grad_norm = torch.nn.utils.clip_grad_norm_(self.actor_module.parameters(), max_norm=self.config.grad_clip)
         self.actor_optimizer.step()
-        if self.alpha_optimizer is not None:
-            self.alpha_optimizer.step()
+        
         return grad_norm

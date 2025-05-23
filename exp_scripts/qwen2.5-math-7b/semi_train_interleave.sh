@@ -35,7 +35,7 @@ python -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
     data.max_prompt_length=1024 \
     data.max_response_length=8192 \
     actor_rollout_ref.model.path=$MODEL_PATH \
-    actor_rollout_ref.actor.grad_clip=0.5 \
+    actor_rollout_ref.actor.grad_clip=0.7 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     actor_rollout_ref.actor.ppo_micro_batch_size=64 \
@@ -47,7 +47,7 @@ python -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
     actor_rollout_ref.model.enable_gradient_checkpointing=True \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.grad_offload=False \
-    actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
+    actor_rollout_ref.actor.fsdp_config.optimizer_offload=True \
     +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=True \
     actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
     actor_rollout_ref.rollout.name=vllm \
@@ -55,7 +55,7 @@ python -m verl.semi_mix_src_interleave_sft.main_mix_ppo \
     actor_rollout_ref.rollout.val_temperature=0.6 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.80 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.rollout.n_val=2 \
+    actor_rollout_ref.rollout.n_val=1 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     actor_rollout_ref.rollout.max_prefix_len=8192 \
     algorithm.kl_ctrl.kl_coef=0.000 \

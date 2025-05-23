@@ -407,7 +407,6 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                             batch = batch.union(reward_tensor)
 
                         reward_tensor = self.reward_fn(batch) # [bsz, l], only the last valid token has reward
-
                         batch.batch['token_level_scores'] = reward_tensor
                         
                         # Rejection sampling based on rewards

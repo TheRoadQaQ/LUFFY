@@ -63,7 +63,12 @@ def compute_rl_sft_loss(
     if sft_loss.isnan().any().item():
         sft_loss = torch.tensor(0.0)
 
-    loss = on_pg_loss + torch.tensor(sft_weight) * sft_loss
+    loss = rl_mask * on_pg_losses + sft_mask * sft_losses
+    loss = verl_F.masked_mean(loss, eos_mask)
+
+
+    losses = on_pg_loss + torch.tensor(sft_weight) * sft_loss
+    loss = (losses * eos_mask).sum() / eos_mask.shape[-1]
 
     return {
         "loss": loss,

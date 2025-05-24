@@ -25,7 +25,8 @@ CUDA_VISIBLE_DEVICES=1 ray start --head --include-dashboard=true --num-cpus=50 -
 
 # semi_mix_src_interleave_sft
 # src_interleave_sft
-: "CUDA_VISIBLE_DEVICES=3 python3 -m verl.src_interleave_sft.main_mix_ppo \
+CUDA_VISIBLE_DEVICES=1 python3 -m verl.src_interleave_sft.main_mix_ppo \
+    +sft.buffer_type="random" \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=8 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=8 \
@@ -52,7 +53,7 @@ CUDA_VISIBLE_DEVICES=1 ray start --head --include-dashboard=true --num-cpus=50 -
     actor_rollout_ref.model.enable_gradient_checkpointing=True \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.grad_offload=False \
-    actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
+    actor_rollout_ref.actor.fsdp_config.optimizer_offload=True \
     +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=True \
     actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     actor_rollout_ref.rollout.name=vllm \
@@ -96,11 +97,11 @@ CUDA_VISIBLE_DEVICES=1 ray start --head --include-dashboard=true --num-cpus=50 -
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${project_name}/${experiment_name} \
-    trainer.total_epochs=5"
+    trainer.total_epochs=5
 
 # Train over a single node, 8 A100-80GB GPUs.
 # semi_mix_src
-CUDA_VISIBLE_DEVICES=1 python3 -m verl.src_rl_sft.main_mix_ppo \
+: "CUDA_VISIBLE_DEVICES=1 python3 -m verl.src_rl_sft.main_mix_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$train_files \
     data.val_files=$test_files \
@@ -163,6 +164,6 @@ CUDA_VISIBLE_DEVICES=1 python3 -m verl.src_rl_sft.main_mix_ppo \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${project_name}/${experiment_name} \
-    trainer.total_epochs=5
+    trainer.total_epochs=5"
 
 python3 /data/malu/run.py

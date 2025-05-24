@@ -391,7 +391,8 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         # Rejection sampling based on rewards
                         # Group rewards by uid
                         uids = batch.non_tensor_batch['uid']
-                        unique_uids = np.unique(uids)
+                        seen = set()
+                        unique_uids = [uid for uid in uids if uid not in seen and not seen.add(uid)]
                         
                         if self.config.data.reward_impl_version == 0:
                             fail_value = 0
@@ -421,7 +422,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         solve_none_format = 0
 
                         solve_none_uids = []
-
+                        uid2solve_num = {}
                         for uid in unique_uids:
                             uid_mask = uids == uid
                             uid_rewards = reward_tensor[uid_mask].sum(-1)  # Sum rewards for each sequence
@@ -435,20 +436,32 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                             elif (uid_rewards == format_value).all():
                                 solve_none_format += 1
 
+                            uid2solve_num[uid] = uid_rewards.sum().item()
+
                         # Log to metrics
                         metrics['batch/bef_solve_none'] = solve_none
                         metrics['batch/bef_solve_none_format'] = solve_none_format
                         metrics['batch/bef_solve_all'] = solve_all
 
-                        # add more metrics
+                        metrics['batch/solve_none'] = solve_none
+                        metrics['batch/solve_none_format'] = solve_none_format
+                        metrics['batch/solve_all'] = solve_all
+
                         metrics['batch/bef_solved'] = (reward_tensor.sum(-1) == success_value).sum().item() / len(uids)
                         metrics['batch/bef_failed'] = (reward_tensor.sum(-1) == fail_value).sum().item() / len(uids)
 
-                        sft_buffer_uids = solve_none_uids
+                        # how to buffer samples for subsequent SFT
+                        buffer_type = self.config.sft.get("buffer_type", "solve_none")
 
-                        uids = batch.non_tensor_batch['uid']
-                        seen = set()
-                        unique_uids = [uid for uid in uids if uid not in seen and not seen.add(uid)]
+                        if buffer_type == "solve_none":
+                            sft_buffer_uids = solve_none_uids
+                        elif buffer_type == "random":
+                            sample_len = len(solve_none_uids)
+                            sft_buffer_uids = random.sample(unique_uids, k=sample_len)
+                        elif buffer_type == "solve<2":
+                            sft_buffer_uids = [uid for uid in uid2solve_num if uid2solve_num[uid] < 2]
+                        else:
+                            raise ValueError(f"Invalid buffer type: {buffer_type}")
 
                         # create buffer batch
                         # obtain buffer indexes(solve-non uids)
@@ -459,16 +472,12 @@ class MIXRayPPOTrainer(RayPPOTrainer):
 
                         # update sft_buffer_batch
                         if buffer_indexes:
-                            solve_none_batch = batch.slice(buffer_indexes)
+                            buffer_batch = batch.slice(buffer_indexes)
 
                             if sft_buffer_batch is not None:
-                                sft_buffer_batch = DataProto.concat([solve_none_batch, sft_buffer_batch])
+                                sft_buffer_batch = DataProto.concat([buffer_batch, sft_buffer_batch])
                             else:
-                                sft_buffer_batch = solve_none_batch
-
-                        metrics['batch/solve_none'] = solve_none
-                        metrics['batch/solve_none_format'] = solve_none_format
-                        metrics['batch/solve_all'] = solve_all
+                                sft_buffer_batch = buffer_batch
 
                         # add prefix_mask, all zero
                         device = batch.batch['responses'].device

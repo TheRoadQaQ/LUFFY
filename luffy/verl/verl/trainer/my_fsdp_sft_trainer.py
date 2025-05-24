@@ -54,6 +54,7 @@ def extract_step(path):
         return int(match.group(1))
     return None
 
+"""
 import debugpy
 try:
     # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
@@ -62,7 +63,7 @@ try:
     debugpy.wait_for_client()
 except Exception as e:
     pass
-
+"""
 
 class MyFSDPSFTTrainer(object):
 

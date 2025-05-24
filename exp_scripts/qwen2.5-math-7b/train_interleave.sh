@@ -10,18 +10,19 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_INTERLEAVE
+export EXP_NAME=7b_INTERLEAVE_one_opt
 export WANDB_PROJECT="rl-sft"
 
 # origin sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0
 # Train over a single node, 8 A100-80GB GPUs.
-python -m verl.src_interleave_sft.main_mix_ppo \
+python -u -m verl.src_interleave_sft.main_mix_ppo \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=128 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=128 \
     +actor_rollout_ref.actor.sft.sft_micro_batch_size=16 \
     +actor_rollout_ref.actor.sft.entropy_coeff=0.001 \
     +actor_rollout_ref.actor.optim.sft.lr=1e-6 \
+    +actor_rollout_ref.actor.optim.sft.same_or_not=True \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/openr1.parquet \
@@ -82,6 +83,6 @@ python -m verl.src_interleave_sft.main_mix_ppo \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
-    trainer.total_epochs=5 "${@:1}"
+    trainer.total_epochs=5 > ./logs/${WANDB_PROJECT}-${EXP_NAME}.txt 2>&1
 
 python /jizhicfs/hymiezhao/ml/busy.py

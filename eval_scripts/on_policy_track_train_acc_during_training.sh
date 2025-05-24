@@ -9,31 +9,19 @@ TEMPLATE=own
 # Define arrays for models and their paths
 # /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 MODEL_PATHS=(
+  /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think/
   /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_30/actor/
   /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_60/actor/
   /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_90/actor/
   /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_120/actor/
-  /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
-)
-
-MODEL_PATHS=(
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_90/actor/
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_120/actor/
-  /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 )
 
 MODEL_NAMES=(
+  Init
   Step_30
   Step_60
   Step_90
   Step_120
-  Init
-)
-
-MODEL_NAMES=(
-  Step_90
-  Step_120
-  Init
 )
 
 # Check if arrays have same length

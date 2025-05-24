@@ -244,8 +244,11 @@ class MIXActorRolloutRefWorker(Worker):
 
             actor_lr_scheduler = get_constant_schedule_with_warmup(optimizer=actor_optimizer,
                                                                    num_warmup_steps=num_warmup_steps)
-                
-            actor_sft_optimizer = optim.AdamW(actor_module_fsdp.parameters(), 
+
+            if optim_config.sft.get('same_or_not', True):
+                actor_sft_optimizer = actor_optimizer
+            else:
+                actor_sft_optimizer = optim.AdamW(actor_module_fsdp.parameters(), 
                                           lr=optim_config.sft.lr,
                                           betas=optim_config.get('betas', (0.9, 0.999)),
                                           weight_decay=optim_config.get('weight_decay', 1e-2))

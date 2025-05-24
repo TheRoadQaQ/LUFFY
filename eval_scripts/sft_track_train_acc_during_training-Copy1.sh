@@ -3,25 +3,19 @@
 #OOD_DATA=../dataset/sub_1000_openr1.parquet
 TRAIN_DATA=../dataset/sub_8000_openr1.parquet
 
-OUTPUT_DIR=./track_results/qwen-math-7b-on-policy/
+OUTPUT_DIR=./track_results/qwen-math-7b-sft/
 TEMPLATE=own
 
 # Define arrays for models and their paths
 # /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 MODEL_PATHS=(
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_30/actor/
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_60/actor/
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_90/actor/
-  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_on_policy_tracking/track_step_120/actor/
-  /jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_sub_SFT/global_step_90
+  /jizhicfs/hymiezhao/ml/reasoning/LUFFY/train_results/rl-sft/7b_sub_SFT/global_step_120
 )
 
 MODEL_NAMES=(
-  Step_30
-  Step_60
   Step_90
   Step_120
-  Init
 )
 
 # Check if arrays have same length

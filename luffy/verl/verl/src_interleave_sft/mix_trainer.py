@@ -451,15 +451,26 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         metrics['batch/bef_failed'] = (reward_tensor.sum(-1) == fail_value).sum().item() / len(uids)
 
                         # how to buffer samples for subsequent SFT
-                        buffer_type = self.config.sft.get("buffer_type", "solve_none")
+                        buffer_type = self.config.sft.buffer_type
 
                         if buffer_type == "solve_none":
                             sft_buffer_uids = solve_none_uids
                         elif buffer_type == "random":
-                            sample_len = len(solve_none_uids)
-                            sft_buffer_uids = random.sample(unique_uids, k=sample_len)
-                        elif buffer_type == "solve<2":
+                            difference_uids = list(set(unique_uids) - set(solve_none_uids))
+                            sample_len = min(len(solve_none_uids), len(difference_uids))
+                            sft_buffer_uids = random.sample(difference_uids, k=sample_len)
+                        elif buffer_type == "random2":
+                            sft_buffer_uids = random.sample(unique_uids, k=16)
+                        elif buffer_type == "solve_less_2":
                             sft_buffer_uids = [uid for uid in uid2solve_num if uid2solve_num[uid] < 2]
+                        elif buffer_type == "all":
+                            sft_buffer_uids = unique_uids
+                        elif buffer_type == "mid":
+                            sft_buffer_uids = [uid for uid in uid2solve_num if 3 <= uid2solve_num[uid] <= 5]
+                        elif buffer_type == "l_hard":
+                            sft_buffer_uids = [uid for uid in uid2solve_num if 6 <= uid2solve_num[uid] <= 7]
+                        elif buffer_type == "l_easy":
+                            sft_buffer_uids = [uid for uid in uid2solve_num if 1 <= uid2solve_num[uid] <= 2]
                         else:
                             raise ValueError(f"Invalid buffer type: {buffer_type}")
 
@@ -473,7 +484,7 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         # update sft_buffer_batch
                         if buffer_indexes:
                             buffer_batch = batch.slice(buffer_indexes)
-
+                            
                             if sft_buffer_batch is not None:
                                 sft_buffer_batch = DataProto.concat([buffer_batch, sft_buffer_batch])
                             else:

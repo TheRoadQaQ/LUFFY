@@ -52,13 +52,16 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
     assert len(messages) == len(answers)
     data_sources = df['data_source'].tolist()
             
-    print(messages[0])
+    #print(messages[0])
     outputs = generate_vllm(messages, model_path, template=template, temperature=temperature, top_p=top_p, max_tokens=max_tokens)
     # rets = {}
     from collections import defaultdict
     rets = defaultdict(list)
     save_data = []
     avg = 0
+    lens = []
+    correct_lens = []
+    incorrect_lens = []
     for i, output in enumerate(outputs):
         prompt = output.prompt
         generated_text = output.outputs[0].text
@@ -69,13 +72,11 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
         if THOUGHT_DELIMITER_START in generated_text and THOUGHT_DELIMITER_END in generated_text:
             generated_text = generated_text.split(THOUGHT_DELIMITER_END)[1]
         
-        # try:
-        labels = labeling_responses([generated_text,], answer)
-        # except Exception as e:
-        #     print(f'Error: {e}')
-        #     # continue
-        #     # rets[data_sources[i]].append(False)
-        #     labels = [False,]
+        try:
+            labels = labeling_responses([generated_text,], answer)
+        except Exception as e:
+            print(f'Error: {e}')
+            labels = [False,]
         
         rets[data_sources[i]].append(labels[0])
         
@@ -85,6 +86,14 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
             'answer': answer,
             'correctness': labels[0]
         })
+
+        lens.append(len(generated_text))
+
+        if labels[0]:
+            correct_lens.append(len(generated_text))
+        else:
+            incorrect_lens.append(len(generated_text))
+        
         if labels[0]:
             avg += 1
             
@@ -94,6 +103,10 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
         # print(data_source, len(labels))
         acc = np.array(labels).mean()
         print(f'{data_source}: {acc}')
+
+    print('avg len: ', sum(lens)/len(lens))
+    print('avg correct len: ', sum(correct_lens)/len(correct_lens))
+    print('avg incorrect len: ', sum(incorrect_lens)/len(incorrect_lens))
     
     try:
         with open(output_file, 'w') as f:

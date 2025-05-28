@@ -1,0 +1,43 @@
+2025-05-28 08:52:35,216	INFO worker.py:1564 -- Connecting to existing Ray cluster at address: 30.207.97.15:6379...
+2025-05-28 08:52:35,224	INFO worker.py:1740 -- Connected to Ray cluster. View the dashboard at [1m[32m127.0.0.1:8265 [39m[22m
+Traceback (most recent call last):
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/jizhicfs/hymiezhao/ml/reasoning/LUFFY/luffy/verl/verl/mix_src/main_mix_ppo.py", line 256, in <module>
+    main()
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/jizhicfs/hymiezhao/ml/reasoning/LUFFY/luffy/verl/verl/mix_src/main_mix_ppo.py", line 143, in main
+    ray.get(main_task.remote(config))
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/ray/_private/worker.py", line 2623, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/ray/_private/worker.py", line 840, in get_objects
+    data_metadata_pairs = self.core_worker.get_objects(
+  File "python/ray/_raylet.pyx", line 3481, in ray._raylet.CoreWorker.get_objects
+  File "python/ray/_raylet.pyx", line 571, in ray._raylet.check_status
+KeyboardInterrupt
+Exception ignored in atexit callback: <function shutdown at 0x7f5c2f6c8c10>
+Traceback (most recent call last):
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/ray/_private/worker.py", line 1813, in shutdown
+    time.sleep(0.5)
+KeyboardInterrupt: 

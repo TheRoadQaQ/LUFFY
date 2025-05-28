@@ -10,13 +10,13 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_INTERLEAVE
+export EXP_NAME=7b_INTERLEAVE_random2_buffer
 export WANDB_PROJECT="rl-sft"
 
 # origin sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0
 # Train over a single node, 8 A100-80GB GPUs.
 python -u -m verl.src_interleave_sft.main_mix_ppo \
-    +sft.buffer_type="solve_none" \
+    +sft.buffer_type="random2" \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=128 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=128 \
@@ -65,7 +65,7 @@ python -u -m verl.src_interleave_sft.main_mix_ppo \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=2 \
-    trainer.save_freq=200 \
+    trainer.save_freq=-1 \
     trainer.test_freq=10 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.use_sft_prefix_reward=False \

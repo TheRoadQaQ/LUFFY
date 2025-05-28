@@ -1,30 +1,21 @@
 set -x
 
+# NOTE: change to your root dir
+
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
 #ray stop 
 #ray start --head --num-cpus=100
 
-#export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-7B
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_INTERLEAVE
 export WANDB_PROJECT="rl-sft"
+export EXP_NAME="7base_on_policy"
 
-# origin sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0
 # Train over a single node, 8 A100-80GB GPUs.
-python -u -m verl.src_interleave_sft.main_mix_ppo \
-    +sft.buffer_type="solve_none" \
-    +actor_rollout_ref.actor.sft.sft_epochs=1 \
-    +actor_rollout_ref.actor.sft.sft_data_size=128 \
-    +actor_rollout_ref.actor.sft.sft_mini_batch_size=128 \
-    +actor_rollout_ref.actor.sft.sft_micro_batch_size=16 \
-    +actor_rollout_ref.actor.sft.entropy_coeff=0.001 \
-    +actor_rollout_ref.actor.optim.sft.lr=1e-6 \
-    +actor_rollout_ref.actor.optim.sft.same_or_not=False \
-    actor_rollout_ref.actor.optim.lr=1e-6 \
+python3 -m verl.mix_src.main_mix_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/openr1.parquet \
     data.val_files=$DATA_DIR/valid.parquet \
@@ -33,7 +24,7 @@ python -u -m verl.src_interleave_sft.main_mix_ppo \
     data.max_prompt_length=1024 \
     data.max_response_length=8192 \
     actor_rollout_ref.model.path=$MODEL_PATH \
-    actor_rollout_ref.actor.grad_clip=0.7 \
+    actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
     actor_rollout_ref.actor.ppo_mini_batch_size=64 \
     actor_rollout_ref.actor.ppo_micro_batch_size=64 \
@@ -45,8 +36,7 @@ python -u -m verl.src_interleave_sft.main_mix_ppo \
     actor_rollout_ref.model.enable_gradient_checkpointing=True \
     actor_rollout_ref.actor.fsdp_config.param_offload=False \
     actor_rollout_ref.actor.fsdp_config.grad_offload=False \
-    actor_rollout_ref.actor.fsdp_config.optimizer_offload=True \
-    +actor_rollout_ref.actor.fsdp_config.sft_optimizer_offload=True \
+    actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
     actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.temperature=1.0 \
@@ -65,25 +55,25 @@ python -u -m verl.src_interleave_sft.main_mix_ppo \
     +trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=2 \
-    trainer.save_freq=200 \
+    trainer.save_freq=-1 \
     trainer.test_freq=10 \
     actor_rollout_ref.actor.use_kl_loss=False \
     actor_rollout_ref.actor.use_sft_prefix_reward=False \
+    actor_rollout_ref.rollout.prefix_share_across_samples=False \
+    actor_rollout_ref.rollout.prefix_strategy=random \
     actor_rollout_ref.rollout.n_prefix=1 \
+    actor_rollout_ref.rollout.min_prefix_ratio=0.0 \
+    actor_rollout_ref.rollout.max_prefix_ratio=0.0 \
     actor_rollout_ref.rollout.prefix_reward_weight_alpha=1.0 \
     actor_rollout_ref.ref.use_ref=False \
     actor_rollout_ref.actor.use_off_policy_loss=True \
     actor_rollout_ref.actor.off_policy_normalize=False \
-    actor_rollout_ref.actor.off_policy_reshape="p_div_p_0.1" \
     actor_rollout_ref.actor.off_policy_loss_impl=token \
     algorithm.grpo_use_std=False \
     actor_rollout_ref.actor.loss_remove_token_mean=True \
-    actor_rollout_ref.actor.loss_remove_clip=True \
     data.reward_impl_version=3 \
     trainer.max_optim_to_keep=2 \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
     trainer.total_epochs=5 > ./logs/${WANDB_PROJECT}-${EXP_NAME}.txt 2>&1
-
-python /jizhicfs/hymiezhao/ml/busy.py

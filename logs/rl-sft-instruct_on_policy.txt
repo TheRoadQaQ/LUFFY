@@ -1,0 +1,505 @@
+2025-05-28 09:06:48,920	INFO worker.py:1564 -- Connecting to existing Ray cluster at address: 30.207.97.15:6379...
+2025-05-28 09:06:48,929	INFO worker.py:1740 -- Connected to Ray cluster. View the dashboard at [1m[32m127.0.0.1:8265 [39m[22m
+[36m(main_task pid=146399)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:
+[36m(main_task pid=146399)[0m No module named 'vllm._version'
+[36m(main_task pid=146399)[0m   from vllm.version import __version__ as VLLM_VERSION
+[36m(pid=263413, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:
+[36m(pid=263413, ip=30.207.97.111)[0m No module named 'vllm._version'
+[36m(pid=263413, ip=30.207.97.111)[0m   from vllm.version import __version__ as VLLM_VERSION
+[36m(pid=263661, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:
+[36m(pid=263661, ip=30.207.97.111)[0m No module named 'vllm._version'
+[36m(pid=263661, ip=30.207.97.111)[0m   from vllm.version import __version__ as VLLM_VERSION
+[36m(WorkerDict pid=263661, ip=30.207.97.111)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[36m(WorkerDict pid=263661, ip=30.207.97.111)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=263661, ip=30.207.97.111)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(WorkerDict pid=263661, ip=30.207.97.111)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.71it/s]
+[36m(pid=263667, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:[32m [repeated 6x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=263667, ip=30.207.97.111)[0m No module named 'vllm._version'[32m [repeated 6x across cluster][0m
+[36m(pid=263667, ip=30.207.97.111)[0m   from vllm.version import __version__ as VLLM_VERSION[32m [repeated 6x across cluster][0m
+[36m(WorkerDict pid=263662, ip=30.207.97.111)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.17it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.37it/s]
+[36m(WorkerDict pid=263667, ip=30.207.97.111)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`[32m [repeated 6x across cluster][0m
+[36m(WorkerDict pid=263667, ip=30.207.97.111)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 6x across cluster][0m
+[36m(WorkerDict pid=263667, ip=30.207.97.111)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 6x across cluster][0m
+[36m(WorkerDict pid=263667, ip=30.207.97.111)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.05it/s][32m [repeated 20x across cluster][0m
+[36m(pid=146960)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:
+[36m(pid=146960)[0m No module named 'vllm._version'
+[36m(pid=146960)[0m   from vllm.version import __version__ as VLLM_VERSION
+[36m(WorkerDict pid=263667, ip=30.207.97.111)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.22it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.62it/s][32m [repeated 6x across cluster][0m
+[36m(pid=146967)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:
+[36m(pid=146967)[0m No module named 'vllm._version'
+[36m(pid=146967)[0m   from vllm.version import __version__ as VLLM_VERSION
+[36m(WorkerDict pid=146967)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=146967)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=146960)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(pid=146965)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/vllm/connections.py:8: RuntimeWarning: Failed to read commit hash:[32m [repeated 6x across cluster][0m
+[36m(pid=146965)[0m No module named 'vllm._version'[32m [repeated 6x across cluster][0m
+[36m(pid=146965)[0m   from vllm.version import __version__ as VLLM_VERSION[32m [repeated 6x across cluster][0m
+[36m(WorkerDict pid=146967)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(WorkerDict pid=146960)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.67it/s]
+[36m(WorkerDict pid=146960)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.87it/s]
+[36m(WorkerDict pid=146965)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`[32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=146965)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.[32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=146965)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=263413, ip=30.207.97.111)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:15,  5.05s/it][32m [repeated 24x across cluster][0m
+[36m(WorkerDict pid=146965)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.00it/s][32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=263413, ip=30.207.97.111)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:14<00:04,  4.90s/it][32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=263413, ip=30.207.97.111)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.78s/it]
+[36m(WorkerDict pid=263662, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:211: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.
+[36m(WorkerDict pid=263662, ip=30.207.97.111)[0m   @torch.library.impl_abstract("xformers_flash::flash_fwd")
+[36m(WorkerDict pid=263662, ip=30.207.97.111)[0m   @torch.library.impl_abstract("xformers_flash::flash_bwd")
+[36m(WorkerDict pid=263662, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:344: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.[32m [repeated 16x across cluster][0m
+[36m(WorkerDict pid=146963)[0m   @torch.library.impl_abstract("xformers_flash::flash_fwd")[32m [repeated 15x across cluster][0m
+[36m(WorkerDict pid=146962)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:689: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=146962)[0m   warnings.warn(
+[36m(WorkerDict pid=146965)[0m   @torch.library.impl_abstract("xformers_flash::flash_bwd")[32m [repeated 15x across cluster][0m
+[36m(WorkerDict pid=146965)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:344: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.[32m [repeated 15x across cluster][0m
+[36m(WorkerDict pid=263664, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:689: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .[32m [repeated 12x across cluster][0m
+[36m(WorkerDict pid=263664, ip=30.207.97.111)[0m   warnings.warn([32m [repeated 12x across cluster][0m
+[36m(main_task pid=146399)[0m wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+[36m(main_task pid=146399)[0m wandb: Currently logged in as: maluqaq (theroadqaq). Use `wandb login --relogin` to force relogin
+[36m(main_task pid=146399)[0m wandb: Tracking run with wandb version 0.19.1
+[36m(main_task pid=146399)[0m wandb: Run data is saved locally in /jizhicfs/hymiezhao/ml/reasoning/LUFFY/wandb/run-20250528_091140-8i65jql7
+[36m(main_task pid=146399)[0m wandb: Run `wandb offline` to turn off syncing.
+[36m(main_task pid=146399)[0m wandb: Syncing run instruct_on_policy
+[36m(main_task pid=146399)[0m wandb: ⭐️ View project at https://wandb.ai/theroadqaq/rl-sft
+[36m(main_task pid=146399)[0m wandb: 🚀 View run at https://wandb.ai/theroadqaq/rl-sft/runs/8i65jql7
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,667:Error comparing zoo and {zoo}
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,677:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,681:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,686:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,691:Error comparing zoo and 12
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,695:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(WorkerDict pid=263665, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:689: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=263665, ip=30.207.97.111)[0m   warnings.warn([32m [repeated 3x across cluster][0m
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,712:Error comparing zoo and {zoo}
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:14:59,717:Error comparing zoo and 14
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:15:02,688:Error comparing (pi/3 < x) & (x < (4*pi)/3) and Union(Interval.open(pi/3, pi/2), Interval.open((4*pi)/3, (3*pi)/2))
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 573, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     return sympy_compare_sets(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 351, in sympy_compare_sets
+[36m(main_task pid=146399)[0m     if isinstance(a_set, Set) and isinstance(b_set, Set) and a_set.symmetric_difference(b_set).is_empty:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 259, in symmetric_difference
+[36m(main_task pid=146399)[0m     return SymmetricDifference(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2183, in __new__
+[36m(main_task pid=146399)[0m     return SymmetricDifference.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2189, in reduce
+[36m(main_task pid=146399)[0m     result = B._symmetric_difference(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 262, in _symmetric_difference
+[36m(main_task pid=146399)[0m     return Union(Complement(self, other), Complement(other, self))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=146399)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1731, in reduce
+[36m(main_task pid=146399)[0m     if B == S.UniversalSet or A.is_subset(B):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in is_subset
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/logic.py", line 142, in fuzzy_and
+[36m(main_task pid=146399)[0m     for ai in args:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in <genexpr>
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 430, in is_subset
+[36m(main_task pid=146399)[0m     if self.intersect(other) == self:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 150, in intersect
+[36m(main_task pid=146399)[0m     return Intersection(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1507, in __new__
+[36m(main_task pid=146399)[0m     return simplify_intersection(args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2644, in simplify_intersection
+[36m(main_task pid=146399)[0m     new_set = intersection_sets(s, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/multipledispatch/dispatcher.py", line 243, in __call__
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/handlers/intersection.py", line 432, in _
+[36m(main_task pid=146399)[0m     if a.start < b.start:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 516, in __bool__
+[36m(main_task pid=146399)[0m     raise TypeError("cannot determine truth value of Relational")
+[36m(main_task pid=146399)[0m TypeError: cannot determine truth value of Relational
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:15:03,154:Error comparing (pi/3 < x) & (x < (4*pi)/3) and Union(Interval.open(pi/3, pi/2), Interval.open((4*pi)/3, (5*pi)/3))
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 573, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     return sympy_compare_sets(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 351, in sympy_compare_sets
+[36m(main_task pid=146399)[0m     if isinstance(a_set, Set) and isinstance(b_set, Set) and a_set.symmetric_difference(b_set).is_empty:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 259, in symmetric_difference
+[36m(main_task pid=146399)[0m     return SymmetricDifference(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2183, in __new__
+[36m(main_task pid=146399)[0m     return SymmetricDifference.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2189, in reduce
+[36m(main_task pid=146399)[0m     result = B._symmetric_difference(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 262, in _symmetric_difference
+[36m(main_task pid=146399)[0m     return Union(Complement(self, other), Complement(other, self))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=146399)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1731, in reduce
+[36m(main_task pid=146399)[0m     if B == S.UniversalSet or A.is_subset(B):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in is_subset
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/logic.py", line 142, in fuzzy_and
+[36m(main_task pid=146399)[0m     for ai in args:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in <genexpr>
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 430, in is_subset
+[36m(main_task pid=146399)[0m     if self.intersect(other) == self:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 150, in intersect
+[36m(main_task pid=146399)[0m     return Intersection(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1507, in __new__
+[36m(main_task pid=146399)[0m     return simplify_intersection(args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2644, in simplify_intersection
+[36m(main_task pid=146399)[0m     new_set = intersection_sets(s, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/multipledispatch/dispatcher.py", line 243, in __call__
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/handlers/intersection.py", line 432, in _
+[36m(main_task pid=146399)[0m     if a.start < b.start:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 516, in __bool__
+[36m(main_task pid=146399)[0m     raise TypeError("cannot determine truth value of Relational")
+[36m(main_task pid=146399)[0m TypeError: cannot determine truth value of Relational
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:15:03,264:Error comparing (pi/3 < x) & (x < (4*pi)/3) and Union(Interval.open(pi/3, (5*pi)/6), Interval.open((4*pi)/3, (11*pi)/6))
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 573, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     return sympy_compare_sets(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 351, in sympy_compare_sets
+[36m(main_task pid=146399)[0m     if isinstance(a_set, Set) and isinstance(b_set, Set) and a_set.symmetric_difference(b_set).is_empty:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 259, in symmetric_difference
+[36m(main_task pid=146399)[0m     return SymmetricDifference(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2183, in __new__
+[36m(main_task pid=146399)[0m     return SymmetricDifference.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2189, in reduce
+[36m(main_task pid=146399)[0m     result = B._symmetric_difference(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 262, in _symmetric_difference
+[36m(main_task pid=146399)[0m     return Union(Complement(self, other), Complement(other, self))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=146399)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1731, in reduce
+[36m(main_task pid=146399)[0m     if B == S.UniversalSet or A.is_subset(B):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in is_subset
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/logic.py", line 142, in fuzzy_and
+[36m(main_task pid=146399)[0m     for ai in args:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in <genexpr>
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 430, in is_subset
+[36m(main_task pid=146399)[0m     if self.intersect(other) == self:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 150, in intersect
+[36m(main_task pid=146399)[0m     return Intersection(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1507, in __new__
+[36m(main_task pid=146399)[0m     return simplify_intersection(args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2644, in simplify_intersection
+[36m(main_task pid=146399)[0m     new_set = intersection_sets(s, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/multipledispatch/dispatcher.py", line 243, in __call__
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/handlers/intersection.py", line 432, in _
+[36m(main_task pid=146399)[0m     if a.start < b.start:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 516, in __bool__
+[36m(main_task pid=146399)[0m     raise TypeError("cannot determine truth value of Relational")
+[36m(main_task pid=146399)[0m TypeError: cannot determine truth value of Relational
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:15:03,348:Error comparing (pi/3 < x) & (x < (4*pi)/3) and Union(Interval.open(pi/3, pi/2), Interval.open((4*pi)/3, (3*pi)/2))
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 573, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     return sympy_compare_sets(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 351, in sympy_compare_sets
+[36m(main_task pid=146399)[0m     if isinstance(a_set, Set) and isinstance(b_set, Set) and a_set.symmetric_difference(b_set).is_empty:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 259, in symmetric_difference
+[36m(main_task pid=146399)[0m     return SymmetricDifference(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2183, in __new__
+[36m(main_task pid=146399)[0m     return SymmetricDifference.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2189, in reduce
+[36m(main_task pid=146399)[0m     result = B._symmetric_difference(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 262, in _symmetric_difference
+[36m(main_task pid=146399)[0m     return Union(Complement(self, other), Complement(other, self))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=146399)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1731, in reduce
+[36m(main_task pid=146399)[0m     if B == S.UniversalSet or A.is_subset(B):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in is_subset
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/logic.py", line 142, in fuzzy_and
+[36m(main_task pid=146399)[0m     for ai in args:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1434, in <genexpr>
+[36m(main_task pid=146399)[0m     return fuzzy_and(s.is_subset(other) for s in self.args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 430, in is_subset
+[36m(main_task pid=146399)[0m     if self.intersect(other) == self:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 150, in intersect
+[36m(main_task pid=146399)[0m     return Intersection(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1507, in __new__
+[36m(main_task pid=146399)[0m     return simplify_intersection(args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2644, in simplify_intersection
+[36m(main_task pid=146399)[0m     new_set = intersection_sets(s, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/multipledispatch/dispatcher.py", line 243, in __call__
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/handlers/intersection.py", line 432, in _
+[36m(main_task pid=146399)[0m     if a.start < b.start:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 516, in __bool__
+[36m(main_task pid=146399)[0m     raise TypeError("cannot determine truth value of Relational")
+[36m(main_task pid=146399)[0m TypeError: cannot determine truth value of Relational
+[36m(WorkerDict pid=263413, ip=30.207.97.111)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+[36m(WorkerDict pid=263413, ip=30.207.97.111)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:37:34,606:Error comparing (x <= 16) & (1/sqrt(2) <= x) and Union(Interval.Lopen(0, 1/sqrt(2)), Interval(4, oo))
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 573, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     return sympy_compare_sets(gold, pred, float_rounding, numeric_precision)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 351, in sympy_compare_sets
+[36m(main_task pid=146399)[0m     if isinstance(a_set, Set) and isinstance(b_set, Set) and a_set.symmetric_difference(b_set).is_empty:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 259, in symmetric_difference
+[36m(main_task pid=146399)[0m     return SymmetricDifference(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2183, in __new__
+[36m(main_task pid=146399)[0m     return SymmetricDifference.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2189, in reduce
+[36m(main_task pid=146399)[0m     result = B._symmetric_difference(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 262, in _symmetric_difference
+[36m(main_task pid=146399)[0m     return Union(Complement(self, other), Complement(other, self))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=146399)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1737, in reduce
+[36m(main_task pid=146399)[0m     result = B._complement(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1207, in _complement
+[36m(main_task pid=146399)[0m     return Set._complement(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 222, in _complement
+[36m(main_task pid=146399)[0m     return Union(*(o - self for o in other.args))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 222, in <genexpr>
+[36m(main_task pid=146399)[0m     return Union(*(o - self for o in other.args))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/decorators.py", line 236, in _func
+[36m(main_task pid=146399)[0m     return func(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 806, in __sub__
+[36m(main_task pid=146399)[0m     return Complement(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1721, in __new__
+[36m(main_task pid=146399)[0m     return Complement.reduce(a, b)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1737, in reduce
+[36m(main_task pid=146399)[0m     result = B._complement(A)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1207, in _complement
+[36m(main_task pid=146399)[0m     return Set._complement(self, other)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 219, in _complement
+[36m(main_task pid=146399)[0m     return Intersection(other, self.complement(S.Reals))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1507, in __new__
+[36m(main_task pid=146399)[0m     return simplify_intersection(args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2621, in simplify_intersection
+[36m(main_task pid=146399)[0m     return Union(*(Intersection(arg, other) for arg in s.args))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2621, in <genexpr>
+[36m(main_task pid=146399)[0m     return Union(*(Intersection(arg, other) for arg in s.args))
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 1507, in __new__
+[36m(main_task pid=146399)[0m     return simplify_intersection(args)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/sets.py", line 2644, in simplify_intersection
+[36m(main_task pid=146399)[0m     new_set = intersection_sets(s, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/multipledispatch/dispatcher.py", line 243, in __call__
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/sets/handlers/intersection.py", line 458, in _
+[36m(main_task pid=146399)[0m     elif a.end > b.end:
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/sympy/core/relational.py", line 516, in __bool__
+[36m(main_task pid=146399)[0m     raise TypeError("cannot determine truth value of Relational")
+[36m(main_task pid=146399)[0m TypeError: cannot determine truth value of Relational
+[36m(WorkerDict pid=146965)[0m /jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.[32m [repeated 15x across cluster][0m
+[36m(WorkerDict pid=146965)[0m   with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined][32m [repeated 15x across cluster][0m
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,326:Error comparing zoo and 15
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,375:Error comparing zoo and 1/4
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,380:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,383:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,387:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,392:Error comparing zoo and 7/26
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo
+[36m(main_task pid=146399)[0m ERROR:2025-05-28 09:45:06,407:Error comparing zoo and zoo
+[36m(main_task pid=146399)[0m Traceback (most recent call last):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 700, in compare_single_extraction_wrapper
+[36m(main_task pid=146399)[0m     return compare_single_extraction(g, t)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/utils.py", line 50, in wrapper
+[36m(main_task pid=146399)[0m     return func(*args, **kwargs)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 682, in compare_single_extraction
+[36m(main_task pid=146399)[0m     return sympy_expr_eq(gold, target, float_rounding, numeric_precision, strict)
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 565, in sympy_expr_eq
+[36m(main_task pid=146399)[0m     if sympy_str_eq(gold, pred):
+[36m(main_task pid=146399)[0m   File "/jizhicfs/hymiezhao/miniconda3/envs/LUFFY/lib/python3.10/site-packages/math_verify/grader.py", line 311, in sympy_str_eq
+[36m(main_task pid=146399)[0m     raise ValueError("Can't evaluate nan or zoo")
+[36m(main_task pid=146399)[0m ValueError: Can't evaluate nan or zoo

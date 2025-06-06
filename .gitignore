@@ -8,3 +8,4 @@
 /dataset/**
 /eval_scripts/prefix_results/**
 /eval_scripts/track_results/**
+/draw_and_analyse/**

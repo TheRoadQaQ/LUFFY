@@ -1,11 +1,12 @@
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-3B-think
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_SFT
+export EXP_NAME=3b_SFT
 export WANDB_PROJECT="rl-sft"
 
 # data.val_files=$DATA_DIR/valid.parquet \
 
+#1.5 \ 2 \ 2.5 epochs
 python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=8 \
      -m verl.trainer.my_fsdp_sft_trainer \
     data.train_files=$DATA_DIR/sft.parquet \
@@ -14,12 +15,12 @@ python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=8 \
     data.prompt_key=prompt \
     data.response_key=answer \
     data.train_batch_size=128 \
-    data.micro_batch_size=8 \
+    data.micro_batch_size=16 \
     data.max_length=16384 \
     model.partial_pretrain=$MODEL_PATH \
     model.enable_gradient_checkpointing=True \
     +trainer.do_validation=False \
-    +trainer.save_checkpoint_steps="[714]" \
+    +trainer.save_checkpoint_steps="[536,714,892]" \
     trainer.project_name=$WANDB_PROJECT \
     trainer.experiment_name="$EXP_NAME" \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \

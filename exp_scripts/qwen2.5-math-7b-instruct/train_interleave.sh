@@ -6,17 +6,16 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 #ray stop 
 #ray start --head --num-cpus=100
 
-#export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-Instruct-16-think
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_INTERLEAVE_mid_buffer
 export WANDB_PROJECT="rl-sft"
+export EXP_NAME="7b_math_instruct_interleave"
 
 # origin sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0
 # Train over a single node, 8 A100-80GB GPUs.
 python -u -m verl.src_interleave_sft.main_mix_ppo \
-    +sft.buffer_type="mid" \
+    +sft.buffer_type="solve_none" \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=128 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=128 \
@@ -84,6 +83,6 @@ python -u -m verl.src_interleave_sft.main_mix_ppo \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
-    trainer.total_epochs=5 > ./logs/${WANDB_PROJECT}-${EXP_NAME}.txt 2>&1
+    trainer.total_epochs=3 > ./logs/${WANDB_PROJECT}-${EXP_NAME}.txt 2>&1
 
 python /jizhicfs/hymiezhao/ml/busy.py

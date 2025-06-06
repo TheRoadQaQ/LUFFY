@@ -40,7 +40,7 @@ def main(input_file, output_file, model_path, debug=False, remove_system=True, t
     # if debug:
         # messages = messages[:10]
     
-    assert remove_system is True
+    #assert remove_system is True
     if remove_system:
         print('remove system')
         assert messages[0][0]['role'] == 'system'
@@ -122,7 +122,7 @@ def generate_vllm(messages, model_path, template='own', temperature=0.6, top_p=0
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     # max_tokens is for the maximum length for generation.
     sampling_params = SamplingParams(temperature=temperature, top_p=top_p, max_tokens=8192)
-    llm = LLM(model=model_path, tensor_parallel_size=torch.cuda.device_count()
+    llm = LLM(model=model_path, tensor_parallel_size=torch.cuda.device_count(), enforce_eager=True
              )  # 替换成本地路径
 
     gen_prompts = []

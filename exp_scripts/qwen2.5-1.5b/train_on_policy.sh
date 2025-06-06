@@ -1,20 +1,21 @@
 set -x
 
+# NOTE: change to your root dir
+
 # Set XFormers backend to avoid CUDA errors
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
 #ray stop 
 #ray start --head --num-cpus=100
 
-#export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-1.5B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-7B
 export DATA_DIR=./dataset/
 
-export EXP_NAME=LUFFY_TEST
 export WANDB_PROJECT="rl-sft"
+export EXP_NAME="7base_on_policy"
 
 # Train over a single node, 8 A100-80GB GPUs.
-python -m verl.mix_src.main_mix_ppo \
+python3 -m verl.mix_src.main_mix_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$DATA_DIR/openr1.parquet \
     data.val_files=$DATA_DIR/valid.parquet \
@@ -42,7 +43,7 @@ python -m verl.mix_src.main_mix_ppo \
     actor_rollout_ref.rollout.val_temperature=0.6 \
     actor_rollout_ref.rollout.gpu_memory_utilization=0.80 \
     actor_rollout_ref.rollout.n=8 \
-    actor_rollout_ref.rollout.n_val=4 \
+    actor_rollout_ref.rollout.n_val=1 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     actor_rollout_ref.rollout.max_prefix_len=8192 \
     algorithm.kl_ctrl.kl_coef=0.000 \
@@ -61,22 +62,18 @@ python -m verl.mix_src.main_mix_ppo \
     actor_rollout_ref.rollout.prefix_share_across_samples=False \
     actor_rollout_ref.rollout.prefix_strategy=random \
     actor_rollout_ref.rollout.n_prefix=1 \
-    actor_rollout_ref.rollout.min_prefix_ratio=1.0 \
-    actor_rollout_ref.rollout.max_prefix_ratio=1.0 \
+    actor_rollout_ref.rollout.min_prefix_ratio=0.0 \
+    actor_rollout_ref.rollout.max_prefix_ratio=0.0 \
     actor_rollout_ref.rollout.prefix_reward_weight_alpha=1.0 \
     actor_rollout_ref.ref.use_ref=False \
     actor_rollout_ref.actor.use_off_policy_loss=True \
     actor_rollout_ref.actor.off_policy_normalize=False \
-    actor_rollout_ref.actor.off_policy_reshape="p_div_p_0.1" \
     actor_rollout_ref.actor.off_policy_loss_impl=token \
     algorithm.grpo_use_std=False \
     actor_rollout_ref.actor.loss_remove_token_mean=True \
-    actor_rollout_ref.actor.loss_remove_clip=True \
     data.reward_impl_version=3 \
     trainer.max_optim_to_keep=2 \
     data.shuffle=True \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=./train_results/${WANDB_PROJECT}/${EXP_NAME} \
-    trainer.total_epochs=5 "${@:1}"
-
-python /jizhicfs/hymiezhao/ml/busy.py
+    trainer.total_epochs=5 > ./logs/${WANDB_PROJECT}-${EXP_NAME}.txt 2>&1

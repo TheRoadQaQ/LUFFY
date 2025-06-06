@@ -1,7 +1,7 @@
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-1.5B-16k-think
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_SFT
+export EXP_NAME=1.5b_SFT
 export WANDB_PROJECT="rl-sft"
 
 # data.val_files=$DATA_DIR/valid.parquet \
@@ -14,7 +14,7 @@ python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=8 \
     data.prompt_key=prompt \
     data.response_key=answer \
     data.train_batch_size=128 \
-    data.micro_batch_size=8 \
+    data.micro_batch_size=32 \
     data.max_length=16384 \
     model.partial_pretrain=$MODEL_PATH \
     model.enable_gradient_checkpointing=True \

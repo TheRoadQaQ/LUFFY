@@ -6,17 +6,16 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 #ray stop 
 #ray start --head --num-cpus=100
 
-#export MODEL_PATH=Elliott/Qwen2.5-Math-7B-16k-think
-export MODEL_PATH=/jizhicfs/hymiezhao/models/Qwen2.5-Math-7B-16k-think
+export MODEL_PATH=/jizhicfs/hymiezhao/models/Meta-Llama-3.1-8B
 export DATA_DIR=./dataset/
 
-export EXP_NAME=7b_INTERLEAVE_l_hard_buffer
 export WANDB_PROJECT="rl-sft"
+export EXP_NAME="llama_8_INTERLEAVE"
 
 # origin sft_data_size=128/sft_epochs=1/adam optimizer as grpo/grad_clip=1.0
 # Train over a single node, 8 A100-80GB GPUs.
 python -u -m verl.src_interleave_sft.main_mix_ppo \
-    +sft.buffer_type="l_hard" \
+    +sft.buffer_type="solve_none" \
     +actor_rollout_ref.actor.sft.sft_epochs=1 \
     +actor_rollout_ref.actor.sft.sft_data_size=128 \
     +actor_rollout_ref.actor.sft.sft_mini_batch_size=128 \
@@ -26,8 +25,8 @@ python -u -m verl.src_interleave_sft.main_mix_ppo \
     +actor_rollout_ref.actor.optim.sft.same_or_not=False \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     algorithm.adv_estimator=grpo \
-    data.train_files=$DATA_DIR/openr1.parquet \
-    data.val_files=$DATA_DIR/valid.parquet \
+    data.train_files=$DATA_DIR/llama_openr1.parquet \
+    data.val_files=$DATA_DIR/llama_valid.parquet \
     data.train_batch_size=128 \
     data.val_batch_size=512 \
     data.max_prompt_length=1024 \

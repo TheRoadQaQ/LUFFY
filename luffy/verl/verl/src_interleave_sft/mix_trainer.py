@@ -620,6 +620,11 @@ class MIXRayPPOTrainer(RayPPOTrainer):
                         with _timer('save_checkpoint', timing_raw):
                             self._save_checkpoint()
 
+                    if self.config.trainer.get("track_or_not", False):
+                        if self.global_steps % self.config.trainer.track_freq == 0:
+                            path = os.path.join(self.config.trainer.default_local_dir, f'step_{self.global_steps}')
+                            self.actor_rollout_wg.save_checkpoint_hf(path)
+
 
                 # collect metrics
                 metrics.update(compute_data_metrics_ours(batch=batch, use_critic=self.use_critic))
